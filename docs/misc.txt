@@ -1,0 +1,32 @@
+There are a number of small features that exist in RoC mod, but which don't
+fit into any existing documentation category. I will attempt to keep this
+file updated to list them. None of these features are critical, merely
+conveniences.
+
+1. Sound-only voice commands
+   Normally, you access voice commands using the @ symbol, followed by a
+   number representing the voice command you wish to use. For example, @12
+   will display the text "Hello", accompanied by a matching sound.
+   
+   There are times, however, when you would prefer to write your own text for
+   the voice command. In this case, you may use the & symbol instead, to use
+   only the sound portion of the voice command. For example, &12 will play the
+   same sound as @12, but without any text, allowing you to write anything you
+   wish to go with it.
+
+2. Ghost mode
+   It is very common to switch to spectator to watch a player you think is
+   acting suspiciously. However, many players have caught on to this, and
+   notice when an admin switches to spectator.
+   
+   An alternative is to spectate the player while you are dead and waiting to
+   respawn. You are still on a team, you just appear dead. Normally this only
+   gives you a few seconds, but if you have g_allowAdminGhost enabled, and
+   your admin status is not suspended, there is a way to freeze your respawn
+   indefinitely. Just hit the "walk" key on your keyboard (whichever key you
+   use to switch between running and walking, the default being shift). This
+   will toggle you into ghost mode, where you can spectate players as long as
+   you like, all the while just appearing dead on your team. Hit the key again
+   to resume the respawn countdown.
+
+

@@ -1,0 +1,29 @@
+//
+//	GAMETYPE:		Team Smear the Queer
+//
+
+gametype
+{
+	displayname		"Team Smear the Queer"
+	respawn			"normal"	
+	pickups			"yes"
+	teams			"yes"
+	showkills		"yes"
+	backpack		"25"
+	basegametype	"inf"
+
+	description		"Players score points for themself and their team by carrying the briefcase. Players attempt to kill the briefcase carrier and take the briefcase for themself."
+
+	items
+	{
+		briefcase
+		{
+			displayname		"Briefcase"
+			enabled			0
+
+			icon			"gfx/menus/hud/briefcase_small"
+			model			"models/pick_ups/briefcase_silver.md3"
+			boltmodel		"models/characters/bolt_ons/briefcase_back.glm"
+		}
+	}
+}

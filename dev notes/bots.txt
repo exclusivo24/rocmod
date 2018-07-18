@@ -1,0 +1,19 @@
+BOTS
+
+Bot modes
+	Exploring
+		Moving to random parts of the map
+		Breaking away from the waypoints into unknown territory
+		Creating new waypoints in empty spaces
+	Firing
+	Camping
+	Returning to crime scene
+	Following a leader
+	Defending flag
+	Grabbing flag
+	Capping flag
+
+Waypoints carry extra information placed by bots as they are used
+	Death count (to mark hot spots on the map)
+	Choke point (bots often get stuck there)
+	

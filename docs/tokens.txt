@@ -1,0 +1,73 @@
+Player text tokens
+==================
+These tokens may be used by players in chat messages.
+
+#n,#N  - Your name
+#h,#H  - Your health, numeric value
+#a,#A  - Your armor, numeric value
+#b     - Your armor, in bar format
+#B     - Your health, in bar format
+#d     - The name of the person that last hurt you
+#D     - The name of the person that last killed you
+#t     - The name of the person you last hurt
+#T     - The name of the person you last killed
+#r     - Name of the last weapon used to hurt you (short)
+#R     - Name of the last weapon used to hurt you (long)
+#l,#L  - Your current location
+#f,#F  - The name of your nearest teammate
+#p     - Name of your primary weapon (short)
+#P     - Name of your primary weapon (long)
+#s     - Name of your secondary weapon (short)
+#S     - Name of your secondary weapon (long)
+#i     - Name of your pistol (short)
+#I     - Name of your pistol (long)
+#g     - Name of your grenade (short)
+#G     - Name of your grenade (long)
+#e,#E  - Name of your equipment (Armor, NV goggles, Thermal goggles)
+#w     - Name of the weapon you are currently holding (short)
+#W     - Name of the weapon you are currently holding (long)
+#u,#U  - Body location where the last person hit you
+#v,#V  - Body location on the person you last killed
+#x     - Your location when you were last hurt
+#X     - Your location when you were last killed
+#y     - Your location when you last hurt someone
+#Y     - Your location when you last killed someone
+#z,#Z  - The name of the last player to join the game
+#nn    - The name of the player with the specified client id (i.e. #13)
+#c     - The name of your teammate currently carrying the flag/briefcase
+#C     - The name of your enemy currently carrying the flag/briefcase
+#o     - Your team's score (or total number for non-team game)
+#O     - The enemy team's score (or total number for non-team game)
+#k     - Red team's score (or total number for non-team game)
+#K     - Blue team's score (or total number for non-team game)
+
+
+Server messaging tokens
+=======================
+These tokens are used in automated server messages.
+
+#z,#Z  - The name of the last player to join the game
+#c     - The name of the player on the red team carrying the flag
+#C     - The name of the player on the blue team carrying the flag
+#s     - The red team's score (or total score for non-team game)
+#S     - The blue team's score (or total score for non-team game)
+#p     - The number of players on the red team (or total number for non-team game)
+#P     - The number of players on the blue team (or total number for non-team game)
+
+
+Command ID tokens
+=================
+These tokens may be used in place of player IDs in admin commands.
+
+#n,#N  - Your ID
+#d     - The ID of the person that last hurt you
+#D     - The ID of the person that last killed you
+#t     - The ID of the person you last hurt
+#T     - The ID of the person you last killed
+#f,#F  - The ID of your nearest teammate
+#z,#Z  - The ID of the last player to join the game
+#c     - The ID of the player on your team carrying the flag/briefcase
+#C     - The ID of the player on the enemy team carrying the flag/briefcase
+#x     - The IDs of all players who have been tagged
+#X     - The IDs of all players who have been tagged (clears tags after use)
+

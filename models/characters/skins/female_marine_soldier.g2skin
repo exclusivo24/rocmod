@@ -1,0 +1,104 @@
+prefs
+{
+	models
+	{
+		1	"female_armor"
+	}
+	surfaces_off
+	{
+		name0	"bun_off"
+		name1	"head_bck_lwr_l_pony_off"
+		name2	"head_bck_lwr_r_pony_off"
+		name3	"head_bck_uppr_l_pony_off"
+		name4	"head_bck_uppr_r_pony_off"
+		name5	"head_side_l_pony_off"
+		name6	"head_side_r_pony_off"
+	}
+	surfaces_on
+	{
+		name0	"head_side_r"
+		name1	"head_side_l"
+		name2	"head_bck_uppr_l"
+		name3	"head_bck_uppr_r"
+		name4	"head_bck_lwr_l"
+		name5	"head_bck_lwr_r"
+	}
+	surfaces_offnochildren
+	{
+		name0	"head_bck_uppr_r_bun_off"
+	}
+}
+
+material
+{
+	name	"head"
+
+	group
+	{
+		name "white"
+
+		texture1	"models/characters/female_face/h_fpro_armored2"
+	}
+}
+
+material
+{
+	name	"face"
+
+	group
+	{
+		name	"white"
+
+		texture1	"models/characters/female_face/f_nurse_w1"	
+	}
+}
+
+material
+{
+	name	"eye_2sided"
+
+	group
+	{
+		name	"white"
+
+		shader1	"models/characters/female_face/f2_nurse_w1"	
+	}
+}
+
+material
+{
+	name	"arms"
+
+	group
+	{
+		name "white"
+
+		texture1	"models/characters/female_armor/a_fpro_armored"
+	}
+}
+
+material
+{
+	name	"body"
+
+	group
+	{
+		name "white"
+
+		texture1	"models/characters/female_armor/b_fpro_armored"
+	}
+}
+
+material
+{
+	name	"caps"
+
+	group
+	{
+		name "white"
+
+		shader1	"models/characters/caps/caps"
+	}
+}
+
+

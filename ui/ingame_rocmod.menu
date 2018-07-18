@@ -1,0 +1,1223 @@
+{
+	\\ ROCMOD MENU
+
+	menuDef 
+	{
+    	name		"ingame_rocmod"
+    	visible		0
+    	fullscreen	0
+    	rect		40 50 580 367
+		focusColor	.49 .56 .27 1
+
+		onOpen
+		{
+			setcvar ui_currentNet 0;
+			setcvar ui_currentMap    0;
+
+			uiScript loadVoteArenas 
+
+			uiScript rocmodSetup;
+		}
+
+		////////////////////////////////////////////////////////////////////////
+		//  Dialog frame
+		////////////////////////////////////////////////////////////////////////
+
+		itemDef
+		{
+			name		window
+			style		WINDOW_STYLE_SHADER
+			rect		0 -6 580 374
+			background	"gfx/menus/ingame/background.png"
+			visible		1
+			decoration
+		}
+
+		itemDef
+		{
+			name		window
+			style		WINDOW_STYLE_SHADER
+			rect		-6 -10 8 8
+			background	"gfx/menus/ingame/frame_topleft.png"
+			visible		1
+			decoration
+		}
+
+		itemDef
+		{
+			name		window
+			style		WINDOW_STYLE_SHADER
+			rect		0 -10 580 8
+			background	"gfx/menus/ingame/frame_top.png"
+			visible		1
+			decoration
+		}
+
+		itemDef
+		{
+			name		window
+			style		WINDOW_STYLE_SHADER
+			rect		580 -10 8 8
+			background	"gfx/menus/ingame/frame_topright.png"
+			visible		1
+			decoration
+		}
+
+		itemDef
+		{
+			name		window
+			style		WINDOW_STYLE_SHADER
+			rect		-6 367 8 8
+			background	"gfx/menus/ingame/frame_bottomleft.png"
+			visible		1
+			decoration
+		}
+
+		itemDef
+		{
+			name		window
+			style		WINDOW_STYLE_SHADER
+			rect		0 367 580 8
+			background	"gfx/menus/ingame/frame_bottom.png"
+			visible		1
+			decoration
+		}
+
+		itemDef
+		{
+			name		window
+			style		WINDOW_STYLE_SHADER
+			rect		580 367 8 8
+			background	"gfx/menus/ingame/frame_bottomright.png"
+			visible		1
+			decoration
+		}
+
+		itemDef
+		{
+			name		window
+			style		WINDOW_STYLE_SHADER
+			rect		580 -5 8 372
+			background	"gfx/menus/ingame/frame_right.png"
+			visible		1
+			decoration
+		}
+
+		itemDef
+		{
+			name		window
+			style		WINDOW_STYLE_SHADER
+			rect		-6 -5 8 372
+			background	"gfx/menus/ingame/frame_left.png"
+			visible		1
+			decoration
+		}
+
+		////////////////////////////////////////////////////////////////////////
+		// 	ADMIN
+		////////////////////////////////////////////////////////////////////////
+
+		itemDef 
+		{
+			name		title_text
+			rect		20 0 540 40
+			text		"RoCmod Admin Center"
+			textalign	1
+			textalignx	270
+			textaligny	2
+			textfont	"hud"
+			textscale	.6
+			forecolor	0 0 0 1
+			backcolor	0 0 0 0
+			visible		1
+			decoration
+		}
+
+		itemDef
+		{
+			style		WINDOW_STYLE_FILLED
+			rect		10 347 560 1
+			backcolor	0 0 0 1
+			visible		1
+			decoration
+		}
+
+		itemDef 
+		{
+			name		credits_text
+			rect		10 352 220 80
+			text		"RoCmod - http://rocmod.rocclan.com"
+			textalign	0
+			textalignx	0
+			textaligny	0
+			textfont	"hud"
+			textscale	.35
+			forecolor	.12 .14 .08 1
+			visible		1
+			decoration
+		}
+
+		itemDef 
+		{
+			name		credits_text
+			rect		440 352 220 40
+			text		"Written by -]RoC[- Arrnor"
+			textalign	0
+			textalignx	0
+			textaligny	0
+			textfont	"hud"
+			textscale	.35
+			forecolor	.12 .14 .08 1
+			visible		1
+			decoration
+		}
+
+		itemDef 
+		{
+			name		playerlist_text
+			rect		25 32 110 20 //25 32 110 20
+			text		"Players:"
+			textalign	0
+			textalignx	0
+			textaligny	2
+			textfont	"hud"
+			textscale	.43
+			forecolor	.12 .14 .08 1
+			backcolor	0 0 0 0
+			visible		1
+			decoration
+		}
+
+		itemDef 
+		{
+			name		actionlist_text
+			rect		25 72 110 20
+			text		"Actions:"
+			textalign	0
+			textalignx	0
+			textaligny	2
+			textfont	"hud"
+			textscale	.43
+			forecolor	.12 .14 .08 1
+			backcolor	0 0 0 0
+			visible		1
+			decoration
+		}
+
+		itemDef 
+		{
+			name			doit_ok_button
+			type			ITEM_TYPE_BUTTON
+			style			WINDOW_STYLE_FILLED
+			rect			220 85 50 20
+			text			"Do It!"
+			textalign		1
+			textalignx		23
+			textaligny		2
+			textfont		"hud"
+			textscale		.43
+			forecolor		.12 .14 .08 1
+			backcolor		0 0 0 0
+			border			1
+			bordercolor		0 0 0 1
+			visible			1
+			
+			action 
+			{ 
+				play "sound/misc/menus/select.wav" ; 
+
+				uiScript adminDoAction;
+				uiScript closeingame;
+			}
+			mouseEnter 
+			{ 
+				play "sound/misc/menus/hilite1.wav" ; 
+				setitemcolor doit_ok_button backcolor .12 .14 .08 1
+				setitemcolor doit_ok_button forecolor .49 .56 .27 1
+			}
+      		mouseExit 
+			{ 
+				setitemcolor doit_ok_button forecolor .12 .14 .08 1
+				setitemcolor doit_ok_button backcolor 0 0 0 0
+			}
+		}
+
+		itemDef
+		{
+			style		WINDOW_STYLE_FILLED
+			rect		10 123 270 1
+			backcolor	0 0 0 1
+			visible		1
+			decoration
+		}
+
+		itemDef 
+		{
+			name			cancelvote_button
+			type			ITEM_TYPE_BUTTON
+			style			WINDOW_STYLE_FILLED
+			rect			45 130 200 20
+			text			"Cancel Current Vote"
+			textalign		1
+			textalignx		100
+			textaligny		2
+			textfont		"hud"
+			textscale		.43
+			forecolor		.12 .14 .08 1
+			backcolor		0 0 0 0
+			border			1
+			bordercolor		0 0 0 1
+			visible			1
+			
+			action 
+			{ 
+				play "sound/misc/menus/select.wav" ; 
+
+				uiScript adminCancelVote;
+				uiScript closeingame;
+			}
+			mouseEnter 
+			{ 
+				play "sound/misc/menus/hilite1.wav" ; 
+				setitemcolor cancelvote_button backcolor .12 .14 .08 1
+				setitemcolor cancelvote_button forecolor .49 .56 .27 1
+			}
+      		mouseExit 
+			{ 
+				setitemcolor cancelvote_button forecolor .12 .14 .08 1
+				setitemcolor cancelvote_button backcolor 0 0 0 0
+			}
+		}
+
+		itemDef 
+		{
+			name			passvote_button
+			type			ITEM_TYPE_BUTTON
+			style			WINDOW_STYLE_FILLED
+			rect			45 155 200 20
+			text			"Pass Current Vote"
+			textalign		1
+			textalignx		100
+			textaligny		2
+			textfont		"hud"
+			textscale		.43
+			forecolor		.12 .14 .08 1
+			backcolor		0 0 0 0
+			border			1
+			bordercolor		0 0 0 1
+			visible			1
+			
+			action 
+			{ 
+				play "sound/misc/menus/select.wav" ; 
+
+				uiScript adminPassVote;
+				uiScript closeingame;
+			}
+			mouseEnter 
+			{ 
+				play "sound/misc/menus/hilite1.wav" ; 
+				setitemcolor passvote_button backcolor .12 .14 .08 1
+				setitemcolor passvote_button forecolor .49 .56 .27 1
+			}
+      		mouseExit 
+			{ 
+				setitemcolor passvote_button forecolor .12 .14 .08 1
+				setitemcolor passvote_button backcolor 0 0 0 0
+			}
+		}
+
+		itemDef 
+		{
+			name			suspend_button
+			type			ITEM_TYPE_BUTTON
+			style			WINDOW_STYLE_FILLED
+			rect			45 180 200 20
+			text			"Admin Suspend/Unsuspend"
+			textalign		1
+			textalignx		100
+			textaligny		2
+			textfont		"hud"
+			textscale		.43
+			forecolor		.12 .14 .08 1
+			backcolor		0 0 0 0
+			border			1
+			bordercolor		0 0 0 1
+			visible			1
+			
+			action 
+			{ 
+				play "sound/misc/menus/select.wav" ; 
+
+				uiScript adminSuspend;
+				uiScript closeingame;
+			}
+			mouseEnter 
+			{ 
+				play "sound/misc/menus/hilite1.wav" ; 
+				setitemcolor suspend_button backcolor .12 .14 .08 1
+				setitemcolor suspend_button forecolor .49 .56 .27 1
+			}
+      		mouseExit 
+			{ 
+				setitemcolor suspend_button forecolor .12 .14 .08 1
+				setitemcolor suspend_button backcolor 0 0 0 0
+			}
+		}
+
+		itemDef 
+		{
+			name			lockred_button
+			type			ITEM_TYPE_BUTTON
+			style			WINDOW_STYLE_FILLED
+			rect			45 205 200 20
+			text			"Lock / Unlock Red Team"
+			textalign		1
+			textalignx		100
+			textaligny		2
+			textfont		"hud"
+			textscale		.43
+			forecolor		.12 .14 .08 1
+			backcolor		0 0 0 0
+			border			1
+			bordercolor		0 0 0 1
+			visible			1
+			
+			action 
+			{ 
+				play "sound/misc/menus/select.wav" ; 
+
+				uiScript adminLockRed;
+				uiScript closeingame;
+			}
+			mouseEnter 
+			{ 
+				play "sound/misc/menus/hilite1.wav" ; 
+				setitemcolor lockred_button backcolor .12 .14 .08 1
+				setitemcolor lockred_button forecolor .49 .56 .27 1
+			}
+      		mouseExit 
+			{ 
+				setitemcolor lockred_button forecolor .12 .14 .08 1
+				setitemcolor lockred_button backcolor 0 0 0 0
+			}
+		}
+
+		itemDef 
+		{
+			name			lockblue_button
+			type			ITEM_TYPE_BUTTON
+			style			WINDOW_STYLE_FILLED
+			rect			45 230 200 20
+			text			"Lock / Unlock Blue Team"
+			textalign		1
+			textalignx		100
+			textaligny		2
+			textfont		"hud"
+			textscale		.43
+			forecolor		.12 .14 .08 1
+			backcolor		0 0 0 0
+			border			1
+			bordercolor		0 0 0 1
+			visible			1
+			
+			action 
+			{ 
+				play "sound/misc/menus/select.wav" ; 
+
+				uiScript adminLockBlue;
+				uiScript closeingame;
+			}
+			mouseEnter 
+			{ 
+				play "sound/misc/menus/hilite1.wav" ; 
+				setitemcolor lockblue_button backcolor .12 .14 .08 1
+				setitemcolor lockblue_button forecolor .49 .56 .27 1
+			}
+      		mouseExit 
+			{ 
+				setitemcolor lockblue_button forecolor .12 .14 .08 1
+				setitemcolor lockblue_button backcolor 0 0 0 0
+			}
+		}
+
+		itemDef
+		{
+			style		WINDOW_STYLE_FILLED
+			rect		10 265 270 1
+			backcolor	0 0 0 1
+			visible		1
+			decoration
+		}
+
+		itemDef 
+		{
+			name		message_text
+			rect		25 280 100 20
+			text		"Admin Message:"
+			textalign	0
+			textalignx	0
+			textaligny	2
+			textfont	"hud"
+			textscale	.43
+			forecolor	.12 .14 .08 1
+			backcolor	0 0 0 0
+			visible		1
+			decoration
+		}
+
+		itemDef 
+		{
+			name			message_textbox
+			type			ITEM_TYPE_EDITFIELD
+			style			WINDOW_STYLE_FILLED
+			rect			20 300 250 15
+			cvar			"ui_AdminMessage"
+			maxChars		120
+			maxPaintChars	40
+			textalign		ITEM_ALIGN_LEFT		
+			textalignx		5
+			textaligny		2
+			textfont		"hud"
+			textscale		.35
+			forecolor		1 1 1 1
+			backcolor		0 0 0 .25
+			visible			1 
+
+			action
+			{
+				play "sound/misc/menus/select.wav" ; 
+			}
+
+			mouseEnter 
+			{ 
+				play "sound/misc/menus/hilite1.wav" ; 
+			}
+		}
+
+		itemDef 
+		{
+			name			send_button
+			type			ITEM_TYPE_BUTTON
+			style			WINDOW_STYLE_FILLED
+			rect			120 320 50 20
+			text			"Send"
+			textalign		1
+			textalignx		25
+			textaligny		2
+			textfont		"hud"
+			textscale		.43
+			forecolor		.12 .14 .08 1
+			backcolor		0 0 0 0
+			border			1
+			bordercolor		0 0 0 1
+			visible			1
+			
+			action 
+			{ 
+				play "sound/misc/menus/select.wav" ; 
+
+				uiScript adminSendMessage;
+				uiScript closeingame;
+			}
+			mouseEnter 
+			{ 
+				play "sound/misc/menus/hilite1.wav" ; 
+				setitemcolor send_button backcolor .12 .14 .08 1
+				setitemcolor send_button forecolor .49 .56 .27 1
+			}
+      		mouseExit 
+			{ 
+				setitemcolor send_button forecolor .12 .14 .08 1
+				setitemcolor send_button backcolor 0 0 0 0
+			}
+		}
+
+		itemDef 
+		{
+      		name			message_list
+			type			ITEM_TYPE_COMBOBOX
+			feeder			FEEDER_ADMIN_MESSAGE
+			style			WINDOW_STYLE_FILLED
+       		rect			150 280 100 60
+			elementheight	15
+			textaligny		-13
+			textfont		"hud"
+			textscale		.35
+			border			1
+			bordercolor		0 0 0 1
+			forecolor		.12 .14 .08 1
+			backcolor		0.52 0.6 0.36 1
+			outlinecolor	0 0 0 .25
+			visible			1
+		}
+
+		itemDef 
+		{
+      		name			action_list
+			type			ITEM_TYPE_COMBOBOX
+			feeder			FEEDER_ADMIN_ACTIONS
+			style			WINDOW_STYLE_FILLED
+       		rect			20 90 175 280//320 //20 90 175 80
+			elementheight	15
+			textaligny		-13
+			textfont		"hud"
+			textscale		.35
+			border			1
+			bordercolor		0 0 0 1
+			forecolor		.12 .14 .08 1
+			backcolor		0.59 0.68 0.41 1
+			outlinecolor	0 0 0 .25
+			visible			1
+		}
+
+		itemDef 
+		{
+      		name			player_list
+			type			ITEM_TYPE_COMBOBOX
+			feeder			FEEDER_PLAYER_LIST
+			style			WINDOW_STYLE_FILLED
+       		rect			20 50 250 320 // 20 50 250 80
+			elementheight	15
+			textaligny		-13
+			textfont		"hud"
+			textscale		.35
+			border			1
+			bordercolor		0 0 0 1
+			forecolor		.12 .14 .08 1
+			backcolor		0.59 0.68 0.41 1
+			outlinecolor	0 0 0 .25
+			visible			1
+		}
+
+		////////////////////////////////////////////////////////////////////////
+		// 	GAME
+		////////////////////////////////////////////////////////////////////////
+
+		itemDef
+		{
+			style		WINDOW_STYLE_FILLED
+			rect		290 32 1 315
+			backcolor	0 0 0 1
+			visible		1
+			decoration
+		}
+
+		itemDef 
+		{
+			name		maplist_text
+			rect		315 32 110 20
+			text		"Change Map:"
+			textalign	0
+			textalignx	0
+			textaligny	2
+			textfont	"hud"
+			textscale	.43
+			forecolor	.12 .14 .08 1
+			backcolor	0 0 0 0
+			visible		1
+			decoration
+		}
+
+		itemDef
+		{
+			name			setmap_button
+			type			ITEM_TYPE_BUTTON
+			style			WINDOW_STYLE_FILLED
+			rect			410 70 50 20
+			text			"Do It!"
+			textalign		1
+			textalignx		23
+			textaligny		2
+			textfont		"hud"
+			textscale		.43
+			forecolor		.12 .14 .08 1
+			backcolor		0 0 0 0
+			border			1
+			bordercolor		0 0 0 1
+			visible			1
+			
+			action 
+			{ 
+				play "sound/misc/menus/select.wav" ; 
+
+				uiScript adminSetMap;
+				uiScript closeingame;
+			}
+			mouseEnter 
+			{ 
+				play "sound/misc/menus/hilite1.wav" ; 
+				setitemcolor setmap_button backcolor .12 .14 .08 1
+				setitemcolor setmap_button forecolor .49 .56 .27 1
+			}
+      		mouseExit 
+			{ 
+				setitemcolor setmap_button forecolor .12 .14 .08 1
+				setitemcolor setmap_button backcolor 0 0 0 0
+			}
+		}
+
+		itemDef
+		{
+			style		WINDOW_STYLE_FILLED
+			rect		300 105 270 1
+			backcolor	0 0 0 1
+			visible		1
+			decoration
+		}
+
+		itemDef 
+		{
+			name			nextmap_button
+			type			ITEM_TYPE_BUTTON
+			style			WINDOW_STYLE_FILLED
+			rect			310 125 120 20
+			text			"Next Map"
+			textalign		1
+			textalignx		60
+			textaligny		2
+			textfont		"hud"
+			textscale		.43
+			forecolor		.12 .14 .08 1
+			backcolor		0 0 0 0
+			border			1
+			bordercolor		0 0 0 1
+			visible			1
+			
+			action 
+			{ 
+				play "sound/misc/menus/select.wav" ; 
+
+				uiScript adminNextMap;
+				uiScript closeingame;
+			}
+			mouseEnter 
+			{ 
+				play "sound/misc/menus/hilite1.wav" ; 
+				setitemcolor nextmap_button backcolor .12 .14 .08 1
+				setitemcolor nextmap_button forecolor .49 .56 .27 1
+			}
+      		mouseExit 
+			{ 
+				setitemcolor nextmap_button forecolor .12 .14 .08 1
+				setitemcolor nextmap_button backcolor 0 0 0 0
+			}
+		}
+
+		itemDef 
+		{
+			name			restartmap_button
+			type			ITEM_TYPE_BUTTON
+			style			WINDOW_STYLE_FILLED
+			rect			310 150 120 20
+			text			"Restart Map"
+			textalign		1
+			textalignx		60
+			textaligny		2
+			textfont		"hud"
+			textscale		.43
+			forecolor		.12 .14 .08 1
+			backcolor		0 0 0 0
+			border			1
+			bordercolor		0 0 0 1
+			visible			1
+			
+			action 
+			{ 
+				play "sound/misc/menus/select.wav" ; 
+
+				uiScript adminRestartMap;
+				uiScript closeingame;
+			}
+			mouseEnter 
+			{ 
+				play "sound/misc/menus/hilite1.wav" ; 
+				setitemcolor restartmap_button backcolor .12 .14 .08 1
+				setitemcolor restartmap_button forecolor .49 .56 .27 1
+			}
+      		mouseExit 
+			{ 
+				setitemcolor restartmap_button forecolor .12 .14 .08 1
+				setitemcolor restartmap_button backcolor 0 0 0 0
+			}
+		}
+
+		itemDef 
+		{
+			name			endmap_button
+			type			ITEM_TYPE_BUTTON
+			style			WINDOW_STYLE_FILLED
+			rect			310 175 120 20
+			text			"End Map"
+			textalign		1
+			textalignx		60
+			textaligny		2
+			textfont		"hud"
+			textscale		.43
+			forecolor		.12 .14 .08 1
+			backcolor		0 0 0 0
+			border			1
+			bordercolor		0 0 0 1
+			visible			1
+			
+			action 
+			{ 
+				play "sound/misc/menus/select.wav" ; 
+
+				uiScript adminEndMap;
+				uiScript closeingame;
+			}
+			mouseEnter 
+			{ 
+				play "sound/misc/menus/hilite1.wav" ; 
+				setitemcolor endmap_button backcolor .12 .14 .08 1
+				setitemcolor endmap_button forecolor .49 .56 .27 1
+			}
+      		mouseExit 
+			{ 
+				setitemcolor endmap_button forecolor .12 .14 .08 1
+				setitemcolor endmap_button backcolor 0 0 0 0
+			}
+		}
+
+		itemDef 
+		{
+			name			swapteams_button
+			type			ITEM_TYPE_BUTTON
+			style			WINDOW_STYLE_FILLED
+			rect			440 125 120 20
+			text			"Swap Teams"
+			textalign		1
+			textalignx		60
+			textaligny		2
+			textfont		"hud"
+			textscale		.43
+			forecolor		.12 .14 .08 1
+			backcolor		0 0 0 0
+			border			1
+			bordercolor		0 0 0 1
+			visible			1
+			
+			action 
+			{
+				play "sound/misc/menus/select.wav" ; 
+
+				uiScript adminSwapTeams;
+				uiScript closeingame;
+			}
+			mouseEnter 
+			{ 
+				play "sound/misc/menus/hilite1.wav" ; 
+				setitemcolor swapteams_button backcolor .12 .14 .08 1
+				setitemcolor swapteams_button forecolor .49 .56 .27 1
+			}
+      		mouseExit 
+			{ 
+				setitemcolor swapteams_button forecolor .12 .14 .08 1
+				setitemcolor swapteams_button backcolor 0 0 0 0
+			}
+		}
+
+		itemDef 
+		{
+			name			shuffleteams_button
+			type			ITEM_TYPE_BUTTON
+			style			WINDOW_STYLE_FILLED
+			rect			440 150 120 20
+			text			"Shuffle Teams"
+			textalign		1
+			textalignx		60
+			textaligny		2
+			textfont		"hud"
+			textscale		.43
+			forecolor		.12 .14 .08 1
+			backcolor		0 0 0 0
+			border			1
+			bordercolor		0 0 0 1
+			visible			1
+			
+			action 
+			{ 
+				play "sound/misc/menus/select.wav" ; 
+
+				uiScript adminShuffleTeams;
+				uiScript closeingame;
+			}
+			mouseEnter 
+			{ 
+				play "sound/misc/menus/hilite1.wav" ; 
+				setitemcolor shuffleteams_button backcolor .12 .14 .08 1
+				setitemcolor shuffleteams_button forecolor .49 .56 .27 1
+			}
+      		mouseExit 
+			{ 
+				setitemcolor shuffleteams_button forecolor .12 .14 .08 1
+				setitemcolor shuffleteams_button backcolor 0 0 0 0
+			}
+		}
+
+		itemDef 
+		{
+			name			eventeams_button
+			type			ITEM_TYPE_BUTTON
+			style			WINDOW_STYLE_FILLED
+			rect			440 175 120 20
+			text			"Even Teams"
+			textalign		1
+			textalignx		60
+			textaligny		2
+			textfont		"hud"
+			textscale		.43
+			forecolor		.12 .14 .08 1
+			backcolor		0 0 0 0
+			border			1
+			bordercolor		0 0 0 1
+			visible			1
+			
+			action 
+			{ 
+				play "sound/misc/menus/select.wav" ; 
+
+				uiScript adminEvenTeams;
+				uiScript closeingame;
+			}
+			mouseEnter 
+			{ 
+				play "sound/misc/menus/hilite1.wav" ; 
+				setitemcolor eventeams_button backcolor .12 .14 .08 1
+				setitemcolor eventeams_button forecolor .49 .56 .27 1
+			}
+      		mouseExit 
+			{ 
+				setitemcolor eventeams_button forecolor .12 .14 .08 1
+				setitemcolor eventeams_button backcolor 0 0 0 0
+			}
+		}
+
+		itemDef 
+		{
+			name			extendtime_button
+			type			ITEM_TYPE_BUTTON
+			style			WINDOW_STYLE_FILLED
+			rect			310 200 120 20
+			text			"Extend Time"
+			textalign		1
+			textalignx		60
+			textaligny		2
+			textfont		"hud"
+			textscale		.43
+			forecolor		.12 .14 .08 1
+			backcolor		0 0 0 0
+			border			1
+			bordercolor		0 0 0 1
+			visible			1
+			
+			action 
+			{ 
+				play "sound/misc/menus/select.wav" ; 
+
+				uiScript adminExtendTime;
+				uiScript closeingame;
+			}
+			mouseEnter 
+			{ 
+				play "sound/misc/menus/hilite1.wav" ; 
+				setitemcolor extendtime_button backcolor .12 .14 .08 1
+				setitemcolor extendtime_button forecolor .49 .56 .27 1
+			}
+      		mouseExit 
+			{ 
+				setitemcolor extendtime_button forecolor .12 .14 .08 1
+				setitemcolor extendtime_button backcolor 0 0 0 0
+			}
+		}
+
+		itemDef 
+		{
+			name			dowarmup_button
+			type			ITEM_TYPE_BUTTON
+			style			WINDOW_STYLE_FILLED
+			rect			440 200 120 20
+			text			"Do Warmup"
+			textalign		1
+			textalignx		60
+			textaligny		2
+			textfont		"hud"
+			textscale		.43
+			forecolor		.12 .14 .08 1
+			backcolor		0 0 0 0
+			border			1
+			bordercolor		0 0 0 1
+			visible			1
+			
+			action 
+			{ 
+				play "sound/misc/menus/select.wav" ; 
+
+				uiScript adminDoWarmup;
+				uiScript closeingame;
+			}
+			mouseEnter 
+			{ 
+				play "sound/misc/menus/hilite1.wav" ; 
+				setitemcolor dowarmup_button backcolor .12 .14 .08 1
+				setitemcolor dowarmup_button forecolor .49 .56 .27 1
+			}
+      		mouseExit 
+			{ 
+				setitemcolor dowarmup_button forecolor .12 .14 .08 1
+				setitemcolor dowarmup_button backcolor 0 0 0 0
+			}
+		}
+
+		itemDef
+		{
+			style		WINDOW_STYLE_FILLED
+			rect		300 240 270 1
+			backcolor	0 0 0 1
+			visible		1
+			decoration
+		}
+
+		itemDef 
+		{
+			name		gametype
+			style		WINDOW_STYLE_FILLED
+			ownerdraw	UI_NETGAMETYPE
+			rect		310 255 190 20
+			text		"Gametype:"
+			textalign	10
+			textalignx	0
+			textaligny	2
+			textfont	"hud"
+			textscale	.43
+			forecolor	.12 .14 .08 1
+			backcolor	0 0 0 0
+			visible		1
+
+			mouseEnter 
+			{ 
+				play "sound/misc/menus/hilite1.wav" ; 
+				setitemcolor gametype backcolor .12 .14 .08 1
+				setitemcolor gametype forecolor .49 .56 .27 1
+			}
+      		mouseExit 
+			{ 
+				setitemcolor gametype forecolor .12 .14 .08 1
+				setitemcolor gametype backcolor 0 0 0 0
+			}
+		}
+
+		itemDef 
+		{
+			name			gametype_button
+			type			ITEM_TYPE_BUTTON
+			style			WINDOW_STYLE_FILLED
+			rect			520 255 40 20
+			text			"Set"
+			textalign		1
+			textalignx		20
+			textaligny		2
+			textfont		"hud"
+			textscale		.43
+			forecolor		.12 .14 .08 1
+			backcolor		0 0 0 0
+			border			1
+			bordercolor		0 0 0 1
+			visible			1
+			
+			action 
+			{ 
+				play "sound/misc/menus/select.wav" ; 
+
+				uiScript adminGametype;
+				uiScript closeingame;
+			}
+			mouseEnter 
+			{ 
+				play "sound/misc/menus/hilite1.wav" ; 
+				setitemcolor gametype_button backcolor .12 .14 .08 1
+				setitemcolor gametype_button forecolor .49 .56 .27 1
+			}
+      		mouseExit 
+			{ 
+				setitemcolor gametype_button forecolor .12 .14 .08 1
+				setitemcolor gametype_button backcolor 0 0 0 0
+			}
+		}
+
+		itemDef 
+		{
+      		name			timelimit_edit
+      		type			ITEM_TYPE_EDITFIELD
+			style			WINDOW_STYLE_FILLED
+			rect			310 285 190 20
+			text			"Timelimit:"
+			maxChars		20
+			maxPaintChars	20
+			cvar			"ui_about_timelimit"
+			textalign		ITEM_ALIGN_RIGHT
+			textalignx		150
+			textaligny		2
+			textfont		"hud"
+			textscale		.43
+     		forecolor		.12 .14 .08 1
+			backcolor		0 0 0 0
+			visible			1 
+
+			action 
+			{ 
+				play "sound/misc/menus/select.wav" ; 
+			}
+
+			mouseEnter
+			{
+				play "sound/misc/menus/hilite1.wav" ; 
+				setitemcolor timelimit_edit backcolor .12 .14 .08 1
+				setitemcolor timelimit_edit forecolor .49 .56 .27 1
+			}
+
+			mouseExit
+			{
+				setitemcolor timelimit_edit backcolor 0 0 0 0
+				setitemcolor timelimit_edit forecolor .12 .14 .08 1
+			}
+    	}
+
+		itemDef 
+		{
+			name			timelimit_button
+			type			ITEM_TYPE_BUTTON
+			style			WINDOW_STYLE_FILLED
+			rect			520 285 40 20
+			text			"Set"
+			textalign		1
+			textalignx		20
+			textaligny		2
+			textfont		"hud"
+			textscale		.43
+			forecolor		.12 .14 .08 1
+			backcolor		0 0 0 0
+			border			1
+			bordercolor		0 0 0 1
+			visible			1
+			
+			action 
+			{ 
+				play "sound/misc/menus/select.wav" ; 
+
+				uiScript adminTimelimit;
+				uiScript closeingame;
+			}
+			mouseEnter 
+			{ 
+				play "sound/misc/menus/hilite1.wav" ; 
+				setitemcolor timelimit_button backcolor .12 .14 .08 1
+				setitemcolor timelimit_button forecolor .49 .56 .27 1
+			}
+      		mouseExit 
+			{ 
+				setitemcolor timelimit_button forecolor .12 .14 .08 1
+				setitemcolor timelimit_button backcolor 0 0 0 0
+			}
+		}
+
+		itemDef 
+		{
+      		name			scorelimit_edit
+      		type			ITEM_TYPE_EDITFIELD
+			style			WINDOW_STYLE_FILLED
+			rect			310 315 190 20
+			text			"Scorelimit:"
+			maxChars		20
+			maxPaintChars	20
+			cvar			"ui_about_scorelimit"
+			textalign		ITEM_ALIGN_RIGHT
+			textalignx		150
+			textaligny		2
+			textfont		"hud"
+			textscale		.43
+     		forecolor		.12 .14 .08 1
+			backcolor		0 0 0 0
+			visible			1 
+
+			action 
+			{ 
+				play "sound/misc/menus/select.wav" ; 
+			}
+
+			mouseEnter
+			{
+				play "sound/misc/menus/hilite1.wav" ; 
+				setitemcolor scorelimit_edit backcolor .12 .14 .08 1
+				setitemcolor scorelimit_edit forecolor .49 .56 .27 1
+			}
+
+			mouseExit
+			{
+				setitemcolor scorelimit_edit backcolor 0 0 0 0
+				setitemcolor scorelimit_edit forecolor .12 .14 .08 1
+			}
+    	}
+
+		itemDef 
+		{
+			name			scorelimit_button
+			type			ITEM_TYPE_BUTTON
+			style			WINDOW_STYLE_FILLED
+			rect			520 315 40 20
+			text			"Set"
+			textalign		1
+			textalignx		20
+			textaligny		2
+			textfont		"hud"
+			textscale		.43
+			forecolor		.12 .14 .08 1
+			backcolor		0 0 0 0
+			border			1
+			bordercolor		0 0 0 1
+			visible			1
+			
+			action 
+			{ 
+				play "sound/misc/menus/select.wav" ; 
+
+				uiScript adminScorelimit;
+				uiScript closeingame;
+			}
+			mouseEnter 
+			{ 
+				play "sound/misc/menus/hilite1.wav" ; 
+				setitemcolor scorelimit_button backcolor .12 .14 .08 1
+				setitemcolor scorelimit_button forecolor .49 .56 .27 1
+			}
+      		mouseExit 
+			{ 
+				setitemcolor scorelimit_button forecolor .12 .14 .08 1
+				setitemcolor scorelimit_button backcolor 0 0 0 0
+			}
+		}
+
+		itemDef 
+		{
+      		name			map_list
+			type			ITEM_TYPE_COMBOBOX
+			feeder			FEEDER_VOTEMAPS
+			style			WINDOW_STYLE_FILLED
+       		rect			310 50 250 320 //310 50 250 80
+			elementheight	15
+			textaligny		-13
+			textfont		"hud"
+			textscale		.35
+			border			1
+			bordercolor		0 0 0 1
+			forecolor		.12 .14 .08 1
+			backcolor		0.59 0.68 0.41 1
+			outlinecolor	0 0 0 .25
+			visible			1
+		}
+
+
+	}
+}
+

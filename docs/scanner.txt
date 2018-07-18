@@ -1,0 +1,45 @@
+Like the PunkBuster MD5 Tool, ROCmod's file scanner works by scanning player files and
+performing MD5 comparisons to make sure the files have not been altered or replaced.
+However, unlike PB's MD5 Tool, which can only scan pk3 files as a whole, the file
+scanner examines individual files at the game level. If a player has a skin or weapon
+model installed, causing the game to use it instead of the default, the file scanner
+will detect the difference and report it to the server.
+
+Like voice commands, the file scanner is fully configurable on the server, using the
+scanlist.cfg file. It is up to the server to decide what files should be scanned, and
+what actions should be taken for mismatches.
+
+The cfg file has the following format:
+	<action> <md5 value> <file name>
+
+For example:
+	k 8EEC06E5835BBC3EEB8F5E644994E2D6 shaders/effects.shader
+
+Note that the file name must include the full path of the file, as stored in the pk3.
+Each line begins with an action, and can be one of the following values:
+	k = Kick player from the server
+	m = Broadcast a warning message to all players in the server
+	a = Broadcast a warning to all admins in the server
+	l = Do nothing except record it in the log
+
+Whenever a mismatch is found between the MD5 value stored in the cfg, and the value
+returned by the client, the specified action for that file is taken.
+
+There are many programs available for calculating the MD5 value of a file. I have
+uploaded a simple commandline program here: http://rocmod.rocclan.com/md5.zip
+Alternatively, you may download a complete list of MD5 values here:
+http://rocmod.rocclan.com/sof2-md5-values.zip
+
+Please note however that the scanlist.cfg file currently has the same limitations
+as the voicecmds.cfg file: a maximum of 1024 entries, and a maximum file size of 64k.
+This may change in the future. It is recommended that you start slow, add a few
+important files to be scanned, and work your way up, rather than scanning for a huge
+number of files to begin with. Also note that certain files are automatically
+modified by rocmod or some maps (i.e. gfx.shader) so scanning for the original
+version of that file will always fail.
+
+
+Please note that the ROCmod client-side is required for this file scanning to work.
+The g_verifyClients cvar must be enabled, and it is recommended that you also enable
+the options to warn and possibly kick players who don't have the client. Any players who
+do not have the client cannot be scanned.

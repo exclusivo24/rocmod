@@ -1,0 +1,101 @@
+CONSOLE COMMANDS
+================
+
+/sounds      - List all available voice commands
+/tokens      - List all available text tokens
+/adm         - Admin commands (see below)
+/ref         - Referee commands (see below)
+/clan        - Clan commands (see below)
+/match       - Match moderator commands (see below)
+/addadmin    - Adds a new admin to the server
+/removeadmin - Removes an existing admin from the server
+/addsysop    - Adds a new sysop to the server
+/removesysop - Removes an existing sysop from the server
+/addref      - Adds a player as referee
+/removeref   - Removes an existing referee from the server
+/refme       - Gives yourself temporary referee status
+/setref      - Sets a particular player as a temporary referee
+/addclan     - Adds a player as a clan member
+/removeclan  - Removes an existing clan member from the server
+/addmod      - Adds a player as a temporary match moderator
+/removemod   - Removes an existing match moderator from the server
+/motd        - Display the server MOTD again
+/admrcon     - Admin access to selected rcon commands
+/admtell     - Sends an admin message to a particular player
+/players     - Lists all players with their id numbers
+/admlist     - Lists all admins currently in the game (if not anonymous)
+/reflist     - Lists all referees currently in the game
+/clanlist    - Lists all clan members currently in the game
+/modlist     - Lists all moderators currently in the game
+/about       - Server mod version info
+
+
+ADMIN/REFEREE/CLAN/MODERATOR COMMANDS
+=====================================
+
+talk         - Send a message to all players
+chat         - Send a message to all peers only
+kick         - Kick a player off the server
+ban          - Kick a player off the server for a length of time
+cancelvote   - Cancel the current vote
+passvote     - Passes the current vote
+mute         - Mute or unmute a player
+suspend      - Toggle your admin status on or off
+pause        - Pauses the game
+unpause      - Resumes a paused game
+freezemap    - Freezes or unfreezes the current map in the mapcycle
+strike       - Kill a player
+slap         - Knock a player back with a taunt
+strip        - Strip a player of all weapons
+forceteam    - Force a player onto a particular team
+switch       - Move a player onto the opposite team
+penalty      - Throw a player in the penalty box
+unpenalty    - Prematurely pulls a player out of the penalty box
+gametype     - Sets the game type
+restart      - Restarts the current map
+mapcycle     - Switches to the next map
+map          - Switches to a specific map
+warmup       - Turns warmup on or off
+friendlyfire - Turns friendly fire on or off
+extendtime   - Extends the timelimit by a certain amount
+timelimit    - Sets the timelimit to a specific amount
+scorelimit   - Sets the scorelimit to a specific amount
+swapteams    - Swaps the teams
+shuffleteams - Randomly mixes up the teams
+endmap       - Ends the current map and moves everyone to intermission
+lock         - Locks or unlocks a team
+suspendall   - Force all admins to suspend their admin status
+fry          - Set a player on fire
+launch       - Tosses a player up into the air
+explode      - Detonates a player from within
+plant        - Immobilizes a player
+telefrag     - Kills a player by telefragging them
+surrender    - Strips a player of all weapons and puts their hands in the air
+respawn      - Forces a player to respawn
+bait         - Plants a player in the enemy spawn, defenseless
+forcesay     - Forces a player to say something
+eventeams    - Evens the teams
+invite       - Invites a player to join or spectate a locked team
+swap         - Swaps two players between opposite teams
+clanvsall    - Moves all clan members to one team, and everyone else to the other team
+pbkick       - Kick a player for a length of time (using PunkBuster)
+pbban        - Permanently ban a player (using PunkBuster)
+pbgetss      - Take a screenshot of a player (using PunkBuster)
+freezemap    - Freezes or unfreezes the current map in the mapcycle
+startmatch   - Begins a match, with special server settings
+endmatch     - Ends the current match, returning to normal settings
+forcematch   - Forces a match to start, even if all players aren't ready
+dummy        - Marks or unmarks a player as a free-to-kill target dummy
+novote       - Prevents a player from calling votes for a period of time
+rename       - Changes a player's name
+cvarcheck    - Displays the value of a player's cvar
+cfg          - Forces the server to apply a specific server cfg
+tag          - Tags specific players for subsequent commands
+swaptags     - Swaps the tags on all players
+cleartags    - Clears all player tags
+tagvsall     - Rearranges teams to put all tagged players on one side
+cripple      - Weakens a player's health and damage
+backfire     - Causes a player's own bullets to turn against him
+password     - Changes the server password
+reset        - Resets all gametype entities
+

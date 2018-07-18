@@ -1,0 +1,10 @@
+Although bots are enabled in ROCmod, they are unsupported, buggy, and are
+known to occasionally cause the server to crash. It is not recommended
+that you use them on public servers or for any length of time.
+
+ROCmod is a multiplayer mod, and it is unlikely the bots will be overhauled
+to make them playable. There are entire mods dedicated to bots, and it
+would be a huge undertaking.
+
+To use the bots, you will need botfiles and botroutes folders from another
+mod such as Mandown or Goldrush. Put these folders in your rocmod folder.

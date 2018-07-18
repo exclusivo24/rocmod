@@ -1,0 +1,310 @@
+//females skins
+
+GroupInfo
+{
+	Skeleton	"female_pants.skl"
+	ParentTemplate	"NPC_Base_Female"
+}
+CharacterTemplate
+{
+	Name		"NPC_Female_Civilian_Pants"
+	FormalName	"Female Civilian"
+	comments	"Generic civilian female"
+	Team		"None"
+	Rank		"Civilian"
+	Occupation	"Tourist"
+	Model		"models/characters/female_pants/female_pants.glm"	
+
+	Skin
+	{
+		File			"female_civilian_w4"
+		mp_team			"civilian"
+		mp_identity		"female_civilian"
+		mp_group		"casual"
+
+		Inventory
+		{
+			Item
+			{
+				Name		"ponytail"
+			}
+			Item
+			{
+				Name		"collar_suitsleeves"
+			}
+			Item
+			{
+				Name		"sleeves"
+			}
+			Item
+			{
+				Name		"glasses_sun2"
+				Bolt		"*head_t"
+				Chance		20
+			}
+		
+		}
+	}
+}
+
+CharacterTemplate
+{
+	Name		"NPC_Finca_Maid"
+	FormalName	"Finca Maid"
+	comments	"A maid for the Finca"
+	Team		"Finca"
+	Rank		"Civilian"
+	Occupation	"ScriptGuy"
+	Model		"models/characters/female_skirt/female_skirt.glm"
+	//Deathmatch	"no"
+	Skin
+	{
+		File	"finca_maid"
+		mp_team			"finca"
+		mp_identity		"finca_female"
+
+		Inventory
+		{
+			Item
+			{
+				Name		"taylor_bun"
+			}
+			Item
+			{
+				Name		"collar_suitsleeves"
+			}
+		}
+	}
+}
+
+CharacterTemplate
+{
+	Name		"NPC_Prometheus_Soldier_Female"
+	FormalName	"Female Prometheus Soldier"
+	comments	"A female Prometheus soldier."
+	Team		"Prometheus"
+	Rank		"Private"
+	Occupation	"Soldier"
+	Model		"models/characters/female_armor/female_armor.glm"
+	Skin
+	{
+		File	"female_prometheus_armor"
+		mp_team "Prometheus"
+		mp_identity "Prometheus_female"
+		
+		Inventory
+		{
+			Weapon
+			{
+				Name		"AK74"
+			}
+			Weapon
+			{
+				Name		"M1911A1"
+				Bolt		"*hip_r"
+			}		
+			Item
+			{
+				Name		"hat_warf_blk"
+				Bolt		"*head_t"
+				Chance	25
+			}
+		}
+	}
+}
+
+
+CharacterTemplate
+{
+	Name		"NPC_Taylor_Urban"
+	FormalName	"Madeline Taylor in Urban Gear"
+	comments	"Madeline Taylor in Urban Gear."
+	Team		"The Shop"
+	Rank		"Private"
+	Occupation	"ScriptGuy"
+	Model		"models/characters/female_armor/female_armor.glm"
+	Skin
+	{
+		File	"taylor_armor"
+		mp_team "shop"
+		mp_identity "shop_female"
+	}
+	Inventory
+	{
+		Item
+		{
+			Name		"ponytail"
+		}
+		Item
+		{
+			Name		"holster"
+			Bolt		"*hip_r"
+		}
+		Item
+		{
+			Name		"knife"
+			Bolt		"*calf_r"
+		}
+	}
+}
+
+CharacterTemplate
+{
+	Name		"NPC_Deviant1"
+	FormalName	"Deviant1"
+	comments	"Deviant1 is the hacker creating the computer virus and is found in HK6 and HK7."
+	Team		"Prometheus"
+	Rank		"Civilian"
+	Occupation	"ScriptGuy"
+	Model		"models/characters/female_skirt/female_skirt.glm"
+	Skin
+	{
+		File	"deviant1"
+		mp_identity		"thug_female"
+		mp_team			"thug"
+
+		Inventory
+		{
+			Item
+			{
+				Name		"ponytail"
+			}
+			Item
+			{
+				Name		"sleeves"
+			}
+			Item
+			{
+				Name		"female_asian_eyes"
+			}
+			Item
+			{
+				Name		"collar_suitsleeves"
+			}
+			/*Item
+			{
+				Name		"alexei_glasses"
+				Bolt		"*head_t"
+				Chance		20
+			}*/
+		}
+	}
+}
+
+CharacterTemplate
+{
+	Name		"NPC_Colombian_Soldier_Female"
+	FormalName	"Female Colombian Soldier"
+	comments	"A female Colombian soldier."
+	Team		"Colombian"
+	Rank		"Private"
+	Occupation	"Soldier"
+	Model		"models/characters/female_pants/female_pants.glm"
+	Skin
+	{
+		File	"female_colombian_soldier"
+		mp_team "colombian"
+		mp_identity "Colombian_female"
+		
+		Inventory
+		{
+			Weapon
+			{
+				Name		"AK74"
+			}
+			Item
+			{
+				Name		"ponytail"
+			}
+			Item
+			{
+				Name		"sleeves"
+			}			
+			Item
+			{
+				Name		"collar_suitsleeves"
+			}					
+		}
+	}
+}
+
+CharacterTemplate
+{
+	Name		"NPC_Female_Marine"
+	FormalName	"Marine Female Soldier"
+	comments	"A female marine soldier."
+	Team		"marine"
+	Rank		"Private"
+	Occupation	"Soldier"
+
+	Model		"models/characters/female_armor/female_armor.glm"
+	Skin
+	{
+		File		"female_marine_soldier"
+		mp_identity	"marine_female"
+		mp_team		"marine"
+
+		Inventory
+		{
+			Weapon
+			{
+				Name		"M4"
+			}
+			Item
+			{
+				Name		"canteen"
+				Bolt		"*hip_br"
+			}
+			Item
+			{
+				Name		"flashlight"
+				Chance	40
+				Bolt		"*shldr_r"
+			}
+			Item
+			{
+				Name		"knife_green"
+				Chance	80
+				Bolt		"*hip_l"
+			}
+		}
+	}
+}
+
+CharacterTemplate
+{
+	Name		"NPC_Female_Snow_Soldier"
+	FormalName	"Female Snow Soldier"
+	Occupation	"Soldier"
+	Rank		"Private"
+	comments	"A female snow soldier"	
+	Team		"snow"
+
+	Model		"models/characters/female_armor/female_armor.glm"
+	Skin
+	{
+		File		"female_snow_soldier"
+		mp_identity	"snowsoldier6"
+		mp_team		"snow"
+
+		Inventory
+		{
+			Weapon
+			{
+				Name		"AK74"
+			}
+			Item
+			{
+				Name		"knife_white"
+				Chance	80
+				Bolt		"*hip_l"
+			}			
+			Item
+			{
+				Name		"holster_black"
+				Chance	80
+				Bolt		"*hip_r"
+			}
+		}
+	}
+}

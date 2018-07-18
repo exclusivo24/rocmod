@@ -1,0 +1,490 @@
+ROCmod version history
+======================
+
+
+2.1c - January 20, 2006
+-----------------------------
+ - Fixed: Removed the menu file from the last release which was causing a lot of menu
+          transparency, it's now back to the 2.1a copy
+ - Fixed: Rare problem with blank GUIDs granting sysop access
+ - Fixed: File scanner was requesting scans for "(null)" file when scanlist.cfg was empty
+ - Added: Vote results are now recorded to the log
+
+2.1b - October 30, 2005
+-----------------------------
+ - Fixed: This release temporarily includes the client menu file from Nerofix 4.0 to
+          fix conflicts introduced in the last release
+ - Fixed: Mod verification was broken in the last release, making g_verifyClients useless
+ - Fixed: Removed text outlining on intermission scoreboard to reduce draw limitations
+ - Fixed: Intermission stats and auto-screenshot didn't work right after a map restart
+ - Fixed: Players got stuck on the spec list after a map restart
+ - Fixed: Attempt #2 at fixing ShuffleTeams
+ - Fixed: g_emptyMapcycle wasn't ignoring bots
+ - Fixed: Server messages were still showing duirng matchmode
+ - Fixed: Teams we're entirely locked during matchmode
+ - Fixed: Admin slap punishments were out of order in the admin menu
+ - Added: Patched several more potential SOF2 buffer overflows
+ - Added: MD5 file scanner, similar to PunkBuster's MD5Tool, but more fine-grained
+          (scanning individual files within pk3's). See scanner.txt for details.
+ - Added: New gametypes - STQ (Smear The Queer) and TSTQ (Team Smear The Queer)
+ - Added: Extended g_inactivityAction to allow both moving to spec and kicking
+ - Added: Admins no longer appear as dead while in ghost mode
+ - Added: Extended g_anonymousAdmin to make admin specs invisible on the scoreboard
+ - Added: New command: togglerecording - Toggles the recording of a demo on or off
+ - Added: Backfire is now on the admin menu
+ - Added: ClanVsAll is now a vote option
+
+2.1a (update)
+-----------------------------
+ - Fixed: Spectators are no longer forced to a team during a gametype change
+ - Fixed: Votes can no longer be influenced by going to spec
+ - Fixed: Setting g_autoEvenTeams to 1 no longer has any effect (no constant message)
+ - Fixed: g_autoEvenTeams is now automatically disabled if teams are locked
+ - Fixed: ShuffleTeams was screwed up in the last release
+ - Added: New cvar to control how often teams are automatically evened
+ - Added: Match moderator status can be added/removed during a match if done via rcon
+ - Added: Patched another SOF2 buffer overflow (jeez Raven...)
+ - Added: Patched a SOF2 flaw in the /ignore command
+ - Added: The map command can now optionally take a gamtype as a second parameter
+ - Added: Map votes can be given a gamtype as a second parameter
+ - Added: New cvar to control whether admins and sysops can be added/removed through
+          the player console as usual or only through rcon
+ - Added: Extended g_punishRecon to allow player score/kills/deaths to be remembered
+
+2.1a - March 27, 2005
+-----------------------------
+ - Fixed: Kill sprees are no longer counted during warmup
+ - Fixed: Clan chat was not being recorded in the log differently from regular chat
+ - Fixed: Some punishments (penalty box, dummy, etc.) were disappearing at respawn
+ - Fixed: Players stripped while zooming were stuck with zoom until death
+ - Fixed: The in-game MOTD display time is no longer extended repeatedly by respawning
+ - Fixed: Possible fix for #Z token in server messages sometimes being blank
+ - Fixed: Admin scores are no longer affected by using punishment commands
+ - Added: Patched several SOF2 buffer overflows (exploited by programs such as sof2boom)
+ - Added: Player IPs are now tracked and limited, to prevent fake player spamming
+ - Added: New (additional) HUD (thanks to MaydaX and Dr. Pimp)
+ - Added: Admin status is still visible to admins/sysops (and, optionally, clan members)
+          when anonymous (though faded)
+ - Added: Thermal goggles, Nightvision goggles, and Armor can be disabled on the server
+ - Added: Matchmode will now exec certain cfg files when the match starts and ends. See
+          matchmode.txt for details.
+ - Added: Inactive players can now be moved to spec rather than just kicked
+ - Added: Female models are now available in team games (thanks to Dr. Pimp)
+ - Added: The OICW now includes a new firing mode, allowing the scope and 20mm nades
+          to coexist (WP version only) (thanks to Dr. Pimp)
+ - Added: New punishment: cripple - Weakens a player's health and damage
+ - Added: New punishment: backfire - Causes a player's own bullets to turn against him
+ - Added: Sysop restrictions now apply between admins and referees/clan members
+ - Added: Team scores are now swapped when teams are swapped
+ - Added: New command: password - Changes the server password
+ - Added: New command: reset - Resets all gametype items
+ - Added: Option to show the map time remaining on the screen under the clock
+ - Added: Match screenshots are given distinct dated names
+ - Added: Teams can now be automatically evened when necessary
+ - Added: Client voice command preferences now apply to server messages
+ - Added: Votes passed by admin are now announced in the console
+ - Added: Rewrote the ShuffleTeams command to make sure teams are even
+ - Added: Match mode status is now drawn on the HUD
+
+2.0c - October 18, 2004
+-----------------------------
+ - Fixed: The auto demo didn't reset g_synchronousClients back to 0
+ - Fixed: g_globalMute now applies during matches
+ - Fixed: The pbgetss command didn't always work, due to a pb bug with name colors
+ - Fixed: Dates in the admin log were displayed incorrectly
+ - Added: New client demo commands: startrecording and stoprecording
+ - Added: Match demos are given distinct filenames, easier to find later
+ - Added: New command: cfg - Executes an existing server cfg in the server's cfgs folder
+ - Added: New /about command to view the server's mod version (including build number)
+ - Added: Player tagging - Marking players by text or id, and performing admin commands
+          on all of them at once (see playertagging.txt for details)
+ - Added: Server cvar to disable the auto-demo of all clients
+ - Added: New "moderator" player status, used during match mode to allow spectators
+          with limited admin powers
+ - Added: New /modlist command to view the list of moderators in the game
+
+2.0b - August 31, 2004
+-----------------------------
+ - Fixed: Spec list was hidden if team overlay was off
+ - Fixed: Team overlay options weren't listed in the Misc Settings menu
+ - Fixed: Some admin commands weren't in the admin menu
+ - Fixed: Bad map location info in custom maps crashed the client with team overlay on
+ - Fixed: Certain gametype items were missing in some maps
+ - Fixed: Not all players were ably to click ready on the scoreboard (SOF2 limitation)
+ - Added: Cvar to adjust camping radius
+ - Added: Cvar to adjust camper punishment
+ - Added: New command: cvarcheck - Displays the value of a player's cvar
+ - Added: The /players list now shows which players are verified (using the client mod)
+ - Added: Custom team coloring now applies to clan shading on the scoreboard as well
+ - Added: Cvar to automatically take a screenshot after every game or match
+ - Added: Cvar to automatically record a demo of matches
+
+2.0a - August 11, 2004
+-----------------------------
+ - Fixed: The /adm switch command sometimes left players in ghost mode a while
+ - Fixed: Ghost mode didn't always turn off properly
+ - Fixed: The #u and #v tokens are no longer blank for explosions
+ - Fixed: Players weren't always frozen during serverside-only intermission stats
+ - Fixed: Clan members are no longer kicked for teamkilling if g_protectClan is enabled
+ - Fixed: New players and spectators can no longer join a team while the game is paused
+ - Fixed: Players could spectate a locked team by using the /follow command
+ - Fixed: Minor bot fixes
+ - Added: Admin ghost mode is now controlled by a cvar
+ - Added: New anti-camper system to warn and strike campers after a period of time
+ - Added: The console command lists now only show commands available to the player
+ - Added: New command: freezemap - freezes or unfreezes the current map in the mapcycle
+ - Added: New command: dummy - Marks or unmarks a player as a free-to-kill target dummy
+ - Added: New command: novote - Prevents a player from calling votes for a period of time
+ - Added: New command: rename - Changes the name of a player
+ - Added: New "match" mode, for scrims and matches, with restricted settings
+ - Added: Automated server messages now have a different prefix from server chat
+ - Added: The loading screen now shows both the server and client mod versions
+ - Added: New voice prompt: o - Sudden death warning
+ - Added: New voice prompt: p - End of killing spree
+ - Added: New voice prompt: q - New vote started
+ - Added: New voice prompt: r - Vote passed
+ - Added: New voice prompt: s - Vote failed
+ - Added: You can now specify your own reason when throwing someone in the penalty box
+ - Added: Admin commands that took "on"/"off" parameters can now use "0"/"1" as well
+ - Added: The g_clientFeatures cvar now specifies the number of seconds between updates
+ - Added: OSP-style team overlay, to view teammate health/armor/location
+ - Added: New text tokens: #x,#X - The location where you were last hurt/killed
+ - Added: New text tokens: #y,#Y - The location where you last hurt/killed someone
+ - Added: New text tokens: #k,#K - The red and blue team scores
+ - Added: New "poll" vote option, to call fake votes
+ - Added: Players can be muted/unmuted by vote
+ - Added: New cvar to limit the number of votes a player can call during a map
+ - Added: Admin logs now show player names in addition to IDs
+ - Added: The admin log now records the real time/date as well as game time
+ - Added: Reconnect punishment tracking now includes muting
+ - Added: Reconnect punishment tracking now includes calling votes
+ - Added: Reconnect punishment tracking now includes voice flooding
+ - Added: New server message cvar that gets displayed whenever a new player joins
+ - Added: The admin menu now has options to force a player to a particular team
+ - Added: Unrecoverable gametype items now automatically reset
+ - Added: Team names and team colors can now be fully customized
+ - Added: Centered messages (such as headshot) now show up in DM gametypes
+ - Added: Cvar to prevent players from dropping gametype items
+ - Added: Configurable chat word filter
+ - Added: Cvar to mute all players except during warmup/intermission/pause/matchmode
+
+1.8b - May 14, 2004
+-----------------------------
+ - Fixed: Admin ghost mode now works for other respawn gametypes besides CTF
+ - Fixed: Chat exploit causing player names to be dropped for long lines of text
+ - Fixed: Backfire percentages now more accurately match actual damage done
+ - Fixed: Respawn time is no longer increased after a long pause
+ - Fixed: The /players list no longer cuts off if there are many players in the server
+ - Fixed: TK backfire and warning now work even if TK penalties are off
+ - Fixed: Flag steal warnings now work even if flag steal pbox is disabled
+ - Fixed: Flag cap calculation is now much more accurate
+ - Fixed: Warmup no longer interferes with g_emptyMapcycle when the server is empty
+ - Fixed: Weapon zoom no longer sticks when the weapon is shot out of your hand
+ - Fixed: Teamkill and spawnkill warnings are no longer triggered by corpses
+ - Fixed: Setting weapon respawn to 0 flooded the server log with "Item:" lines
+ - Fixed: Bandwidth usage for Team Info has been massively reduced (to almost nothing)
+ - Fixed: M203 nades are now properly counted on the medals as nade kills
+ - Fixed: Some minor performance tweaks
+ - Fixed: The scoreboard sometimes only showed 10 players instead of the full list
+ - Fixed: Connecting players sometimes ended up on locked teams
+ - Fixed: Team shuffling should now be a bit more balanced
+ - Added: New voice prompt: j - Weapon shot out of hand
+ - Added: New voice prompt: k - Humiliation melee kill
+ - Added: g_dropWeapon can now be set to switch to the next weapon instead of knife
+ - Added: Players no longer freefloat when their whole team is dead
+ - Added: The ban time used by the admin menu is now determined by a cvar
+ - Added: Almost all mod and adm commands are now usable from within rcon
+ - Added: New cvar to control whether spectators can spec locked teams
+ - Added: Removing player status will now check for other status rather than set to none
+ - Added: The pbgetss command will now use the previous player id if given an id of -1
+ - Added: Referees added via /addref are now permanent
+ - Added: New /setref command to set a player as a temporary referee
+ - Added: New /refme command to give yourself temporary referee status using a password
+ - Added: The in-game MOTD can now include server tokens and voice command text
+ - Added: Time remaining messages now use voice prompts (l, m, n)
+ - Added: New cvar to control ammo clip reloading realism
+ - Added: Unknown rcon and console commands are no longer sent into the server as chat
+ - Added: Warmup teamkill stats (if g_allowWarmupFriendlyFire is enabled)
+ - Added: New voice command option: sysoponly
+ - Added: New voice command option: refereeonly
+ - Added: New setting to prevent players from escaping punishment by reconnect/kill
+ - Added: The scoreboard now shows the number of players and the number of clan members
+
+1.7b - February 14, 2004
+-----------------------------
+ - Fixed: Potential server crash when alternate scoreboard sorting was used
+ - Fixed: Some clan commands were still using referee cvars
+ - Fixed: Automatic team shuffling and swapping no longer pulls spectators into a team
+ - Fixed: Admins were unable to move players to a full team
+ - Fixed: If a player disconnected while the server was paused, best stats were displayed
+ - Fixed: The g_emptyMapcycle cvar didn't always work
+ - Fixed: The M203 is now properly recorded in the stats as a nade kill
+ - Fixed: Admins didn't see Teamkill/Spawnkill warnings unless g_adminBackfire was on
+ - Fixed: The suspendall command didn't always suspend sysops (when used by sysops)
+ - Added: Separated out the #t,#T,#d,#D tokens to separately record hits and kills
+ - Added: Spawnkill protection can now be applied to non-team gametypes
+ - Added: New 'clanvsall' command - Reorganizes teams, Clan Members vs All Others
+ - Added: Gametype item logging now uses the new OSP style for stats compatability
+ - Added: Clan members can now be identified by background color on the scoreboard
+ - Added: Cvar to allow the team score to be penalized for player suicides
+ - Added: Scoreboard now displays the timelimit, including extensions
+ - Added: Merged the g_allowAdmin*, g_allowRef*, g_allowClan*, and g_sysopRestrict*
+          cvars into one cvar, for simplicity and to save space and memory
+ - Added: Admins are no longer dropped to freefloat mode when the player they spec dies
+ - Added: Voice commands can now be run in "server mode" to possibly reduce server lag
+ - Added: New 'pbkick' command - Kick a player for a length of time (using punkbuster)
+ - Added: New 'pbban' command - Permanently ban a player (using punkbuster)
+ - Added: New 'pbgetss' command - Take a screenshot of a player (using punkbuster)
+ - Added: Admins can now hit the walk key while dead to freeze their respawn timer
+ - Added: Admin kill punishments are now recorded better in the log
+ - Added: New 'best player' stat: Most Flag Defends
+ - Added: New sv_minRate cvar to warn/kick players with too low a connection rate
+ - Added: Removed bots from the mod, to improve speed (a bot version is also available)
+ - Added: Many other performance improvements
+ - Added: New sysop restriction setting
+ - Added: The admin menu can now be properly used by referees and clan members as well
+ - Added: Clip ammo indicator now turns red when low
+ - Added: The voice command limit has been raised to 1024 voice commands (as well as a
+          voicecmds.cfg file size limit of 64k)
+ - Added: The headshot voice command has been moved to a separate list of 'internal'
+          voice commands, which now includes voice commands for killing sprees, last
+          player alive, and first blood. See voicecommands.txt for usage.
+ - Added: New g_lastPlayer cvar to tell players when they're the last alive on their team
+ - Added: New g_dropWeapon cvar to allow you to shoot the gun out of someone's hand
+ - Added: A kick vote can now be is started automatically whenever a player's TK% reaches
+          a certain level
+ - Added: You can use & rather than @ to use only the sound part of a voice command
+
+1.7a - December 19, 2003
+-----------------------------
+ - Fixed: The /players list wasn't displaying all players correctly
+ - Fixed: After pausing the game, some players could become unhittable
+ - Added: New text token: #c,#C - The name of your teammate carrying the flag
+ - Added: Headshot logging now uses the new OSP style for stats compatability
+ - Added: Cvar to restart warmup if the number of players drops below 2
+ - Added: Cvar to allow the mapcycle to continue running even if the server is empty
+ - Added: Voice commands can now be marked as clan-only
+ - Added: Cvar for alternate scoreboard sorting based on kill ratios
+ - Added: Cvar to control client extra features (team info, spec list)
+ - Added: Damage mods (weapon configs) can be changed on the fly using a cvar
+ - Added: Clan members now have their own set of commands
+ - Added: New 'swap' command - swap two players on opposite teams
+ - Added: New /admlist command to list all admins in the server (if not anonymous)
+ - Added: New /reflist command to list all referees in the server
+ - Added: New /clanlist command to list all clan members in the server
+ - Added: Voice commands can now be used in the server messages
+ - Added: A new set of text tokens for the server messages
+ - Added: Cvar to protect clan members from being vote kicked from their own server
+
+1.6b - October 28, 2003
+-----------------------------
+ - Fixed: Locking teams didn't move existing spectators
+ - Fixed: SOF2's center print function cropped text too short
+ - Fixed: The #Z,#z tokens weren't listed in the /tokens list
+ - Fixed: adm talk and admtell were not anonymous if g_anonymousAdmin was on
+ - Fixed: Certain punishments could cause the flag to disappear if held
+ - Fixed: /removeadmin and /removesysop didn't always work properly
+ - Fixed: Admins were unable to use referee commands
+ - Fixed: Locked spectators have been moved even higher to hide player movements
+ - Fixed: The respawn punishment no longer restores the player's health/armor/ammo/etc.
+ - Fixed: The forcesay punishment now works even when the player is muted or in the pbox
+ - Added: /adm talk and /ref talk are now white to stand out better
+ - Added: Backfire can now be used even while friendly fire is off
+ - Added: Cvar to allow backfire to apply to admins
+ - Added: Score updates are now backward-compatible, and extensible for future versions
+ - Added: Spectator movement speed is now relative to g_speed, rather than hard-coded
+ - Added: Killing spree losses are now announced to all players
+ - Added: Players can now be marked as clan members
+ - Added: New /clan chat command
+ - Added: Fast chat shortcuts (to use talk/chat commands without the console)
+ - Added: New /adm bait punishment command
+ - Added: New text tokens: #nn (i.e. #13) - Display player name by client id
+
+1.6a - October 19, 2003
+-----------------------------
+ - Fixed: Players can no longer add themself as the first admin if a sysop already exists
+ - Fixed: The endmap command now works even if the game is tied
+ - Fixed: Players can no longer unmute themselves by going through the penalty box
+ - Fixed: Some timed messages (i.e. penalty box message) were being lost while following
+ - Fixed: Sysops are no longer blocked by the g_allowAdmin* cvars
+ - Added: Several more "best player" stats, with medals!
+ - Added: Redesigned the intermission scoreboard to hold the new stats
+ - Added: Server cvar to apply inactivity timeout to spectators as well
+ - Added: INF briefcase captures are now recorded in the log
+ - Added: Flag stealing punishment now applies to INF briefcase stealing as well
+ - Added: The appearance of private player and admin messages has been made clearer
+ - Added: Separated the cvars for Kick and Ban commands
+ - Added: Cvar to enable/disable admin voting powers
+ - Added: Referee commands now use their own cvars, rather than using admin cvars
+ - Added: New /adm unpenalty command
+ - Added: New /adm pause and /adm unpause commands
+ - Added: Auto penalty box for spawn killing
+ - Added: New /adm fry punishment command
+ - Added: New /adm launch punishment command
+ - Added: New /adm explode punishment command
+ - Added: New /adm plant punishment command
+ - Added: New /adm telefrag punishment command
+ - Added: New /adm surrender punishment command
+ - Added: New /adm respawn punishment command
+ - Added: Grenade explosions can now cause more dismemberment gore at close range
+ - Added: New text token: #z, #Z
+ - Added: Deathmatch respawning is now available during warmup in all gametypes
+ - Added: Added referee, endmap, shuffleteams, swapteams to the callvote menu
+ - Added: Cvar to prevent spectators from following players in a locked team
+ - Added: New /adm invite command
+ - Added: Cvar for announcing killing sprees
+ - Added: Cvar to allow admins to be anonymous
+ - Added: New /adm forcesay command
+ - Added: Cvar to allow teamkill and spawnkill damage to backfire
+ - Added: Merged the g_allowAdmin* and g_allowSuspendedAdmin* cvars to save space
+ - Added: New /players command, to view the names and ids of all players
+ - Added: New /ref talk and /ref chat commands
+
+1.5d - September 14, 2003
+-----------------------------
+ - Fixed: /admrcon didn't work for suspended admins
+ - Fixed: Server will now accept verification for client versions newer than server
+ - Fixed: Time remaining in the penalty box was displayed as a negative number
+ - Fixed: Bots were being listed as admins, making them hard to manage
+ - Fixed: Removed the 30k voice command cfg limit and reduced memory usage in the process
+ - Fixed: Did some minor performance optimizations with text string usage
+ - Fixed: The MOTD is refreshed every 3 sec rather than every 1 sec, saving bandwidth
+ - Added: New /adm friendlyfire command
+ - Added: Players can now be set as referees - temporary admins with limited powers
+ - Added: New /adm passvote command
+ - Added: Server cvar to allow a server to display a logo on the loading screen
+ - Added: New server cvar to force all admins to initially be suspended when they join
+
+1.5b - September 6, 2003
+-----------------------------
+ - Fixed: Text tokens were using incorrect team colors
+ - Fixed: shuffleteams and swapteams commands were not fully broadcasting team changes
+ - Fixed: Teams can no longer be swapped or shuffled while locked
+ - Fixed: The spectator list wasn't using the proper players' cvars
+ - Fixed: The /sounds list was being send in too many small pieces, causing a lag spike
+ - Fixed: Name colors no longer bleed over into remaining text
+ - Added: New /admtell command, like /tell but with admin tag/sound
+
+1.5a - September 5, 2003
+-----------------------------
+ - Fixed: Flag steal penalty still applied if player dropped flag before being tk'd
+ - Fixed: Admin chat could be seen by non-admins
+ - Fixed: If the flag bearer was thrown in the penalty box, the flag might disappear
+ - Fixed: Certain typos in the voice comamnds cfg file could cause the server to freeze
+ - Fixed: Suspended admins could override sysop restrictions
+ - Fixed: Flag steal penalty was being applied to suicides
+ - Fixed: removeadmin and removesysop didn't work if the admin/sysop was suspended
+ - Fixed: Headshot notification sound in the default voicecmds.cfg was incorrect
+ - Fixed: There was a potential infinite loop bug in SOF2's anti-lag code (WTF?)
+ - Added: NEW SERVERSIDE-ONLY MODE!
+ - Added: New cvar to disable tk doubling for gametype items
+ - Added: New text tokens: #u,#U, #v,#V
+ - Added: New cvar to control the default timelength for the penalty box
+ - Added: New cvar to disable player death when switching teams
+ - Added: Enabled the cvar to allow ghosts to talk to players in non-respawn games
+ - Added: Player token values now persist over respawns
+ - Added: Text tokens now display player names using team colors
+ - Added: Voice commands now use the game's existing voice flood protection cvars
+ - Added: The detailed obituary cvar has been extended to allow even more detail
+ - Added: Voice commands can now be set as admin-only in the voicecmds.cfg file
+ - Added: New adm lock command, for locking/unlocking teams
+ - Added: New adm suspendall command, to force all admins to suspend their admin status
+ - Added: The in-game MOTD has been extended to 10 lines
+ - Added: Client cvar to enable/disable viewing teammate info
+ - Added: loading screen can now show a server or clan logo
+ - Added: Client cvar to enable/disable viewing a list of spectators
+
+1.4c - August 18, 2003
+-----------------------------
+ - Fixed: Rewrote the swapteams and shuffleteams commands to function more smoothly
+ - Fixed: Switching teams by an admin no longer counts as a death
+ - Fixed: Voice command sounds no longer get cut off by other sounds
+ - Fixed: Admin chat and talk didn't work for suspended admins even if enabled
+ - Fixed: Player deaths by adm strike were improperly recorded in the server log
+ - Fixed: The clock displayed 12:00am as 0:00am
+ - Fixed: If the flag bearer was thrown in the penalty box, the flag disappeared
+ - Fixed: Disabled callvote items were unavailable to admins as well
+ - Fixed: Crouch/lean exploit has been fixed for shotguns
+ - Added: Color names can now be enabled/disabled by a cvar
+ - Added: The server can now set the minimum kill count for the best player stats
+ - Added: Teamkilling can be enabled/disabled during warmup
+ - Added: Clients now have some control over what voice command sounds they hear
+ - Added: New intermission stats: Best Ratio and Most Flag Caps
+ - Added: Flag captures are now recorded in the server log
+ - Added: New server cvar to greatly reduce sniper accuracy while running and
+          jumping to prevent unrealistic no-scope shots
+ - Added: All voice command sounds can now be edited and customized using a cfg file
+ - Added: Headshot notification can be customized within the voice command cfg file
+ - Added: New client cvar to allow you to see what body part was hit in the kill messages
+ - Added: New adm endmap command, to end the current map and go straight to intermission
+ - Added: Auto penalty box for flag stealing
+ - Added: Server cvar to adjust the duration of the intermission
+ - Added: New cvars to enable/disable certain admin commands completely
+ - Added: The delay between verification warnings can now be adjusted
+ - Added: New text tokens: #r, #R
+ - Added: Admin rcon commands and cvars are now accessible through the /admrcon command
+
+1.4a - 1.4b
+-----------------------------
+ - Experimental builds, replaced due to bugs
+
+1.3b - July 29, 2003
+-----------------------------
+ - Fixed: An annoying timeout bug in the server-side verification
+
+1.3a - July 28, 2003
+-----------------------------
+ - Fixed: The swap, shuffle, and switch commands didn't always work as expected
+ - Fixed: Voice commands were still localized
+ - Fixed: Voice commands were heard by everyone, even if they were sent as team-only
+ - Fixed: Some of the sounds in the /sounds list were incorrect
+ - Fixed: Reworked the scoreboard so clients without the mod don't get weird results
+ - Fixed: Gametype text used colors from player names rather than white
+ - Fixed: In-game MOTD was being interrupted by game messages
+ - Fixed: SOF2 only displayed around 64 maps in the menus. That limit is now 256.
+ - Fixed: Default ForceRespawn time length has been reduced from 20 sec to 5 sec
+ - Added: Server-side client verification. The server now checks all clients to
+          verify that they are running the same mod version as the server.
+ - Added: New cvar to enable/disable showing the "Best Player" stats at intermission
+ - Added: "Best Player" stats now use team colors rather than just white
+ - Added: New cvars to enable/disable the enhanced HUD and scoreboard
+ - Added: Headshots are now recorded in the game log
+ - Added: Admin commands can now be recorded in an additional separate game log
+ - Added: Client-side now includes an optional media pack, including some animal sounds
+ - Added: New cvars to determind what admin commands are available to suspended admins
+ - Added: You can now type /tokens in the console to get a list of all text tokens
+ - Added: Admin menu has been extended to include items from the 'Call Vote' menu.
+          The 'Call Vote' menu now acts as it originally did for all players.
+ - Added: New interface options under Misc. Settings menu
+
+1.2 - July 22, 2003
+-----------------------------
+ - Fixed: "Headshot" message was appearing on all clients
+ - Fixed: In-game MOTD sometimes wouldn't go away
+ - Fixed: Message text in client menu wouldn't scroll if too long
+ - Fixed: Admin voting was disabled during intermission
+ - Fixed: Adding a dead player to the penalty box caused permanent mute
+ - Fixed: Muted players could still use voice commands
+ - Fixed: Voice commands were localized
+ - Fixed: Penalty box was just plain fucked up
+ - Fixed: Cancelvote command was still functional when no vote was in progress
+ - Fixed: Admin suspend was being reset during mapcycle
+ - Fixed: Admin teamkills were still being recorded, resulting in autokick after suspend
+ - Fixed: Player ignores were ignoring admin chat as well
+ - Added: Admins can free spectate even if g_forceFollow is on
+ - Added: Name colors remain visible in team games
+ - Added: Auto penalty box for team killing
+ - Added: Com text remains visible during scoreboard
+ - Added: Admin commands are now recorded in the server log
+ - Added: Many new cvars for tweaking
+ - Added: Sysop "super admin" level
+ - Added: cvar-controlled restrictions on admin commands when a sysop is present
+ - Added: Most callvote items can now be issued as /adm commands
+ - Added: Two new /adm commands: swapteams and shuffleteams
+ - Added: All the standard text tokens, plus a new one: #w
+ - Added: 13 new voice commands
+ - Added: "Best player" stats shown at intermission (end of the map)
+
+1.0 - July 16, 2003
+-----------------------------
+ - First release!

@@ -1,0 +1,36 @@
+Match mode allows you to put the server in a known preconfigured state to
+speed up and organize scrims and matches.
+
+When match mode is enabled, the game is paused, and waits until all players
+have "clicked in" to mark themselves as ready. Once all players are ready,
+the map restarts, and the match begins.
+
+While the match is running, there are several settings and cvars which are
+in effect, overriding the existing server settings. These settings can not
+be overridden during the match. Once match mode has been disabled, all
+settings and cvars revert to their previous state.
+
+When a match is started, the server will attempt to execute the
+"cfgs/startmatch.cfg" file within the mod folder. Similarly, when the match
+is ended, the server will attempt to execute the "cfgs/endmatch.cfg" file.
+This is to allow servers to tweak any additional settings for the match that
+match mode doesn't modify.
+
+The following server settings are modified during match mode:
+	Admin status: Suspended
+	Admin commands: Non-essentials disabled
+	Ghost mode: Disabled
+	Penalty box: Disabled
+	Spawnkill penalties: Disabled
+	Teamkill penalties: Disabled
+	Flag steal penalties: Disabled
+	Mapcycle: Frozen
+	Mapcycle swap/shuffle: Disabled
+	Teams: Locked
+	Warmup: Enabled (30 seconds)
+	Warmup TK: Disabled
+	Sudden death: Disabled
+	Server messages: Disabled
+	Weapons shot from hand: Disabled
+	Anti-camping: Disabled
+

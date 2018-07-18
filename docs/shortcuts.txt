@@ -1,0 +1,12 @@
+Chat Shortcuts
+==============
+
+Type these at the beginning of the line to perform the specified action.
+
+!ac  - /adm chat
+!at  - /adm talk
+!rc  - /ref chat
+!rt  - /ref talk
+!cc  - /clan chat
+!ct  - /clan talk
+

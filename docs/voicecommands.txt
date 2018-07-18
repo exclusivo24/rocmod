@@ -1,0 +1,144 @@
+Voice commands are configured using the voicecmds.cfg file. You may include
+this file with the server in the rocmod folder, or you can put it in a pk3
+file along with any new sound files you have added to it.
+
+The cfg file is only used by the server, however all clients will need to
+download any of the new sounds that are not already a part of the game. The
+ROC media pack is a good example to follow for creating your own sound pk3
+file. A default cfg file is left on the server, and an updated cfg file
+using the new sounds is included in the pk3 file along with the sounds. That
+way, if the sound pk3 file is present, it will be used, otherwise the default
+will be used, and there will be no "missing sound" errors.
+
+The following options may be used in the cfg file:
+	<command number> sound "path of sound file"
+	<command number> text "Text to display"
+	<command number> notext "display note"
+	<command number> sysoponly
+	<command number> adminonly
+	<command number> refereeonly
+	<command number> clanonly
+
+For example, the following lines would create the @52 voice command:
+	52 sound "sound/npc/col8/washington/takingnames.mp3"
+	52 text "Kickin' ass and takin' names!"
+
+
+In addition to the numbered voice commands, there is also a set of internal
+voice commands used by the mod itself, for things such as headshots, killing
+sprees, etc. These internal voice commands start with a single letter rather
+than a number, so there is no conflict with existing voice commands.
+
+Note that many of the internal voice commands are sound-only. Any text you
+define for them will be ignored. Here is a list of the currently defined
+internal voice commands letters which you may use in your voicecmds.cfg file:
+
+a = Headshot
+b = Killing spree - Spree (sound only)
+c = Killing spree - Rampage (sound only)
+d = Killing spree - Dominating (sound only)
+e = Killing spree - Unstoppable (sound only)
+f = Killing spree - Godlike (sound only)
+g = Killing Spree - Cheating (sound only)
+h = Last player on team (INF/ELIM) (sound only)
+i = First blood (sound only)
+j = Weapon shot out of hand
+k = Humiliation melee kill
+l = 5 minute warning
+m = 3 minute warning
+n = 1 minute warning
+o = Sudden death warning
+p = End of killing spree (sound only)
+q = New vote started (sound only)
+r = Vote passed (sound only)
+s = Vote failed (sound only)
+
+
+Below are the standard voice commands that come with the mod. Editing the
+standard voice commands is not recommended, as it could confuse existing
+players who have their binds set.
+
+
+@1 "Affirmative!"
+@2 "Negative!"
+@3 "Yes, sir?"
+@4 "Yes sir"
+@5 "Yes sir!"
+@6 "Yes sir!"
+@7 "Yes sir!"
+@8 "Yeah!"
+@9 "Yeah!"
+@10 "lol"
+@11 "lol!"
+@12 "Hello"
+@13 "Good day"
+@14 "Good day, sir"
+@15 "Help!"
+@16 "Nice shot!"
+@17 "Nice shot!"
+@18 "Nice shot!"
+@19 "Ha! Great shot!"
+@20 "Dammit!"
+@21 "Damn!"
+@22 "I'll be right back"
+@23 "Thank you"
+@24 "Yeah, thanks"
+@25 "Thanks"
+@26 "Incoming!"
+@27 "Advance!"
+@28 "Advance!"
+@29 "Awaiting orders!"
+@30 "Hold position!"
+@31 "Lets go! Move!"
+@32 "Go check that out"
+@33 "Go check that out!"
+@34 "Move it!"
+@35 "Fan out!"
+@36 "Pair up!"
+@37 "Spread out!"
+@38 "Clear!"
+@39 "Cover me!"
+@40 "Got him!"
+@41 "Got it!"
+@42 "Be careful!"
+@43 "Watch out!"
+@44 "Get down!"
+@45 "Get down!"
+@46 "Take cover!"
+@47 "Under fire!"
+@48 "I'm hit!"
+@49 "Man down!"
+@50 "Secure the perimeter!"
+@51 "I need backup, NOW!"
+@52 "Objective complete!"
+@53 "Hey honey"
+@54 "Coming through"
+@55 "Don't hurt me!"
+@56 "Excuse me?"
+@57 "Damn, that was close!"
+@58 "You see that guy? He wet his pants! Ha ha ha ha ha!"
+@59 "Shuddup, man!"
+@60 "Eat lead, sucka!"
+@61 "Kickin' ass and takin' names!"
+@62 "How'd you like that!"
+@63 "Take that!"
+@64 "Take that!"
+@65 "You want some of this?"
+@66 "You want some of this?"
+@67 "You scared? You should be!"
+@68 "Bang! You're dead!"
+@69 "Come get some!"
+@70 "Go cry to mama!"
+@71 "Die!"
+@72 "What the...?!"
+@73 "Watch your fire!"
+@74 "Drop your weapon!"
+@75 "Fire!"
+@76 "I got that bastard!"
+@77 "Hey!"
+@78 "Medic! Medic!"
+@79 "We're getting slaughtered!"
+@80 "Plug him!"
+@81 "Stop!"
+@82 "Success!"
+@83 "You're not supposed to be here!"

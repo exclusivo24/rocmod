@@ -1,0 +1,260 @@
+
+s:/ani/base/models/weapons/oicw/oicwaltfire.xsi
+{
+	"startframe"	"360"
+	"duration"	"7"
+	"fps"	"20"
+	"averagevec"	"0.000 0.000 0.000"
+	
+	notetrack
+	{
+		"frame"	"2"
+		"note"	"altfire"
+	}
+}
+
+s:/ani/base/models/weapons/oicw/oicwcrawl.xsi
+{
+	"startframe"	"367"
+	"duration"	"28"
+	"fps"	"30"
+	"averagevec"	"0.000 0.000 0.000"
+}
+
+s:/ani/base/models/weapons/oicw/oicwdone.xsi
+{
+	"startframe"	"395"
+	"duration"	"6"
+	"fps"	"20"
+	"averagevec"	"0.000 0.000 0.000"
+}
+
+s:/ani/base/models/weapons/oicw/oicwfire.xsi
+{
+	"startframe"	"401"
+	"duration"	"2"
+	"fps"	"20"
+	"averagevec"	"0.000 0.000 0.000"
+	
+	notetrack
+	{
+		"frame"	"1"
+		"note"	"fire"
+	}
+}
+
+s:/ani/base/models/weapons/oicw/oicwfire2.xsi
+{
+	"startframe"	"403"
+	"duration"	"2"
+	"fps"	"20"
+	"averagevec"	"0.000 0.000 0.000"
+	
+	notetrack
+	{
+		"frame"	"1"
+		"note"	"fire"
+	}
+}
+
+s:/ani/base/models/weapons/oicw/oicwfire3.xsi
+{
+	"startframe"	"405"
+	"duration"	"2"
+	"fps"	"20"
+	"averagevec"	"0.000 0.000 0.000"
+	
+	notetrack
+	{
+		"frame"	"1"
+		"note"	"fire"
+	}
+}
+
+s:/ani/base/models/weapons/oicw/oicwfire4.xsi
+{
+	"startframe"	"407"
+	"duration"	"2"
+	"fps"	"20"
+	"averagevec"	"0.000 0.000 0.000"
+	
+	notetrack
+	{
+		"frame"	"1"
+		"note"	"fire"
+	}
+}
+
+s:/ani/base/models/weapons/oicw/oicwidle.xsi
+{
+	"startframe"	"456"
+	"duration"	"24"
+	"fps"	"20"
+	"averagevec"	"0.000 0.000 0.000"
+}
+
+s:/ani/base/models/weapons/oicw/oicwpronetostand.xsi
+{
+	"startframe"	"480"
+	"duration"	"11"
+	"fps"	"30"
+	"averagevec"	"0.000 0.000 0.000"
+}
+
+s:/ani/base/models/weapons/oicw/oicwready.xsi
+{
+	"startframe"	"491"
+	"duration"	"12"
+	"fps"	"20"
+	"averagevec"	"0.000 0.000 0.000"
+	
+	notetrack
+	{
+		"frame"	"1"
+		"note"	"ready"
+	}
+	
+	notetrack
+	{
+		"frame"	"4"
+		"note"	"bolt"
+	}
+}
+
+s:/ani/base/models/weapons/oicw/oicwreload.xsi
+{
+	"startframe"	"503"
+	"duration"	"21"
+	"fps"	"20"
+	"averagevec"	"0.000 0.000 0.000"
+	
+	notetrack
+	{
+		"frame"	"6"
+		"note"	"clipin"
+	}
+	
+	notetrack
+	{
+		"frame"	"12"
+		"note"	"clipout"
+	}
+	
+	notetrack
+	{
+		"frame"	"17"
+		"note"	"bolt_forward"
+	}
+}
+
+s:/ani/base/models/weapons/oicw/oicwstandtoprone.xsi
+{
+	"startframe"	"556"
+	"duration"	"10"
+	"fps"	"30"
+	"averagevec"	"0.000 0.000 0.000"
+}
+
+s:/ani/base/models/weapons/oicw/oicwzoomin.xsi
+{
+	"startframe"	"566"
+	"duration"	"4"
+	"fps"	"30"
+	"averagevec"	"0.000 0.000 0.000"
+}
+
+s:/ani/base/models/weapons/oicw/oicwzoomout.xsi
+{
+	"startframe"	"574"
+	"duration"	"4"
+	"fps"	"30"
+	"averagevec"	"0.000 0.000 0.000"
+}
+
+s:/ani/base/models/weapons/oicw/oicwmenuspin.xsi
+{
+	"startframe"	"0"
+	"duration"	"360"
+	"fps"	"5"
+	"averagevec"	"0.000 0.000 0.000"
+}
+
+s:/ani/base/models/weapons/oicw/oicwfingeradjust.xsi
+{
+	"startframe"	"412"
+	"duration"	"11"
+	"fps"	"30"
+	"averagevec"	"0.000 0.000 0.000"
+}
+
+s:/ani/base/models/weapons/oicw/oicwfingerknobs.xsi
+{
+	"startframe"	"423"
+	"duration"	"33"
+	"fps"	"30"
+	"averagevec"	"0.000 0.000 0.000"
+	
+	notetrack
+	{
+		"frame"	"6"
+		"note"	"knob_adjust"
+	}
+	
+	notetrack
+	{
+		"frame"	"19"
+		"note"	"knob_adjust2"
+	}
+}
+
+s:/ani/base/models/weapons/oicw/oicwdryfire.xsi
+{
+	"startframe"	"409"
+	"duration"	"3"
+	"fps"	"30"
+	"averagevec"	"0.000 0.000 0.000"
+}
+
+s:/ani/base/models/weapons/oicw/oicwaltreload.xsi
+{
+	"startframe"	"524"
+	"duration"	"32"
+	"fps"	"30"
+	"averagevec"	"0.000 0.000 0.000"
+	
+	notetrack
+	{
+		"frame"	"11"
+		"note"	"altclipout"
+	}
+	
+	notetrack
+	{
+		"frame"	"22"
+		"note"	"altclipin"
+	}
+}
+
+s:/ani/base/models/weapons/oicw/oicwfire2.xsi
+{
+	"startframe"	"403"
+	"duration"	"2"
+	"fps"	"20"
+	"averagevec"	"0.000 0.000 0.000"
+}
+
+s:/ani/base/models/weapons/oicw/oicwfire3.xsi
+{
+	"startframe"	"405"
+	"duration"	"2"
+	"fps"	"20"
+	"averagevec"	"0.000 0.000 0.000"
+}
+
+s:/ani/base/models/weapons/oicw/oicwfire4.xsi
+{
+	"startframe"	"407"
+	"duration"	"2"
+	"fps"	"20"
+	"averagevec"	"0.000 0.000 0.000"
+}

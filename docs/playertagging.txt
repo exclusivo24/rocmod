@@ -1,0 +1,49 @@
+Player tagging allows you to tag, or mark, multiple players, allowing you to
+perform admin commands on all of them at once. For example, rather than slowly
+moving every player from a particular clan to a certain team, you can instead
+tag them all at once by their clan tag, and move them all with a single
+command.
+
+Players are tagged with the "tag" command, and can be tagged either by their
+player ID, or by a string of text in their name. For example:
+
+/adm tag 8
+
+Will tag player 8, adding him to the list of tagged players, while:
+
+/adm tag RoC
+
+Will tag all players with the text "RoC" in their name, such as their clan
+tags.
+
+Each "tag" command will add the tagged players to the existing list of tagged
+players.
+
+You may then run a command on all tagged players by using the #x or #X command
+tokens (see the tokens.txt file for info on command tokens). For example:
+
+/adm forceteam #x blue
+
+Will move all tagged players to the blue team, or:
+
+/adm mute #X
+
+Will mute/unmute all tagged players.
+
+The only difference between the #x and #X tokens is the #X token will clear
+the existing player tags after use. Once a command has been performed on a
+group of tagged players, the tags are cleared. To perform an additional
+command on a group of players, they will have to be re-tagged. This is not the
+case with the #x token, allowing you to perform multiple commands on a set of
+players.
+
+You may additionally manage the list of tagged players through the following
+commands:
+
+/adm swaptags
+ Reverses the players that are or are not tagged. Players that were tagged are
+ no longer tagged, and previously untagged players are now tagged.
+
+/adm cleartags
+ Clears all player tags, allowing you to start fresh.
+

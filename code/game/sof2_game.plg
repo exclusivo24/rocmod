@@ -1,0 +1,132 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: SoF2game - Win32 Debug SoF2--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "D:\Temp\RSP22.tmp" with contents
+[
+/nologo /G5 /MTd /W3 /Gm /GX /ZI /Od /D "_DEBUG" /D "BUILDING_REF_GL" /D "Debug SoF2" /D "WIN32" /D "_WINDOWS" /D "MISSIONPACK" /D "QAGAME" /D "_SOF2" /FR"..\Debug\SoF2game/" /Fp"..\Debug\SoF2game/sof2_game.pch" /YX /Fo"..\Debug\SoF2game/" /Fd"..\Debug\SoF2game/" /FD /c 
+"C:\PRGRMMNG\ROCmod\code\game\ai_main.c"
+"C:\PRGRMMNG\ROCmod\code\game\ai_util.c"
+"C:\PRGRMMNG\ROCmod\code\game\ai_wpnav.c"
+"C:\PRGRMMNG\ROCmod\code\game\bg_gametype.c"
+"C:\PRGRMMNG\ROCmod\code\game\bg_misc.c"
+"C:\PRGRMMNG\ROCmod\code\game\bg_player.c"
+"C:\PRGRMMNG\ROCmod\code\game\bg_pmove.c"
+"C:\PRGRMMNG\ROCmod\code\game\bg_slidemove.c"
+"C:\PRGRMMNG\ROCmod\code\game\bg_weapons.c"
+"C:\PRGRMMNG\ROCmod\code\game\g_active.c"
+"C:\PRGRMMNG\ROCmod\code\game\g_admin.c"
+"C:\PRGRMMNG\ROCmod\code\game\g_admincmds.c"
+"C:\PRGRMMNG\ROCmod\code\game\g_antilag.c"
+"C:\PRGRMMNG\ROCmod\code\game\g_bot.c"
+"C:\PRGRMMNG\ROCmod\code\game\g_client.c"
+"C:\PRGRMMNG\ROCmod\code\game\g_cmds.c"
+"C:\PRGRMMNG\ROCmod\code\game\g_combat.c"
+"C:\PRGRMMNG\ROCmod\code\game\g_gametype.c"
+"C:\PRGRMMNG\ROCmod\code\game\g_items.c"
+"C:\PRGRMMNG\ROCmod\code\game\g_main.c"
+"C:\PRGRMMNG\ROCmod\code\game\g_misc.c"
+"C:\PRGRMMNG\ROCmod\code\game\g_missile.c"
+"C:\PRGRMMNG\ROCmod\code\game\g_mover.c"
+"C:\PRGRMMNG\ROCmod\code\game\g_session.c"
+"C:\PRGRMMNG\ROCmod\code\game\g_spawn.c"
+"C:\PRGRMMNG\ROCmod\code\game\g_svcmds.c"
+"C:\PRGRMMNG\ROCmod\code\game\g_syscalls.c"
+"C:\PRGRMMNG\ROCmod\code\game\g_target.c"
+"C:\PRGRMMNG\ROCmod\code\game\g_team.c"
+"C:\PRGRMMNG\ROCmod\code\game\g_trigger.c"
+"C:\PRGRMMNG\ROCmod\code\game\g_utils.c"
+"C:\PRGRMMNG\ROCmod\code\game\g_weapon.c"
+"C:\PRGRMMNG\ROCmod\code\game\q_math.c"
+"C:\PRGRMMNG\ROCmod\code\game\q_shared.c"
+]
+Creating command line "cl.exe @D:\Temp\RSP22.tmp" 
+Creating temporary file "D:\Temp\RSP23.tmp" with contents
+[
+kernel32.lib user32.lib winmm.lib /nologo /base:"0x20000000" /subsystem:windows /dll /profile /map:"C:\GAMES\SOLDIE~1\rocmod\sof2mp_gamex86.map" /debug /machine:I386 /def:".\SoF2_game.def" /out:"C:\GAMES\SOLDIE~1\rocmod\sof2mp_gamex86.dll" /implib:"C:\GAMES\SOLDIE~1\rocmod/sof2mp_gamex86.lib" 
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\ai_main.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\ai_util.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\ai_wpnav.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\bg_gametype.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\bg_misc.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\bg_player.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\bg_pmove.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\bg_slidemove.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\bg_weapons.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\g_active.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\g_admin.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\g_admincmds.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\g_antilag.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\g_bot.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\g_client.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\g_cmds.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\g_combat.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\g_gametype.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\g_items.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\g_main.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\g_misc.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\g_missile.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\g_mover.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\g_session.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\g_spawn.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\g_svcmds.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\g_syscalls.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\g_target.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\g_team.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\g_trigger.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\g_utils.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\g_weapon.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\q_math.obj
+\PRGRMMNG\ROCmod\code\Debug\SoF2game\q_shared.obj
+]
+Creating command line "link.exe @D:\Temp\RSP23.tmp"
+<h3>Output Window</h3>
+Compiling...
+ai_main.c
+ai_util.c
+ai_wpnav.c
+bg_gametype.c
+bg_misc.c
+bg_player.c
+bg_pmove.c
+bg_slidemove.c
+bg_weapons.c
+g_active.c
+g_admin.c
+g_admincmds.c
+g_antilag.c
+g_bot.c
+g_client.c
+g_cmds.c
+g_combat.c
+g_gametype.c
+g_items.c
+g_main.c
+g_misc.c
+g_missile.c
+g_mover.c
+g_session.c
+g_spawn.c
+g_svcmds.c
+g_syscalls.c
+g_target.c
+g_team.c
+g_trigger.c
+g_utils.c
+g_weapon.c
+q_math.c
+q_shared.c
+Linking...
+   Creating library C:\GAMES\SOLDIE~1\rocmod/sof2mp_gamex86.lib and object C:\GAMES\SOLDIE~1\rocmod/sof2mp_gamex86.exp
+
+
+
+<h3>Results</h3>
+sof2mp_gamex86.dll - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

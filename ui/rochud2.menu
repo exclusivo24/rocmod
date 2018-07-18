@@ -1,0 +1,877 @@
+{
+	assetGlobalDef
+	{
+		fadeClamp		1.0								// sets the fadeup alpha
+		fadeCycle		1								// how often fade happens in milliseconds
+		fadeAmount		0.1								// amount to adjust alpha per cycle
+
+		shadowX			5								// x amount for shadow offset
+		shadowY			5								// y amount for shadow offset
+		shadowColor		0.1 0.1 0.1 0.25				// shadow color
+
+		defaultFont		"hud"
+	}
+
+	// Thermal vision
+	menuDef
+	{
+		name		"thermalvision"
+		fullScreen	0
+		visible		1
+		rect		0 0 640 480
+
+		itemDef
+		{
+			style		WINDOW_STYLE_FILLED
+			rect		0 0 16 480
+			backcolor	0 0 0 1
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_THERMAL
+		}
+
+		itemDef
+		{
+			style		WINDOW_STYLE_FILLED
+			rect		624 0 16 480
+			backcolor	0 0 0 1
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_THERMAL
+		}
+
+		itemDef
+		{
+			style		WINDOW_STYLE_FILLED
+			rect		0 0 640 60
+			backcolor	0 0 0 1
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_THERMAL
+		}
+
+		itemDef
+		{
+			style		WINDOW_STYLE_FILLED
+			rect		0 420 640 60
+			backcolor	0 0 0 1
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_THERMAL
+		}
+
+		itemDef
+		{
+			style		WINDOW_STYLE_SHADER
+			rect		16 60 304 180
+			background	"gfx/menus/hud/thermal/thermal_background"
+			backcolor	1 1 1 1
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_THERMAL
+		}
+
+		itemDef
+		{
+			name		window
+			style		WINDOW_STYLE_FILLED
+			rect		624 60 -304 180
+			background	"gfx/menus/hud/thermal/thermal_background"
+			backcolor	1 1 1 1
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_THERMAL
+		}
+
+		itemDef
+		{
+			name		window
+			style		WINDOW_STYLE_FILLED
+			rect		16 420 304 -180
+			background	"gfx/menus/hud/thermal/thermal_background"
+			backcolor	1 1 1 1
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_THERMAL
+		}
+
+		itemDef
+		{
+			name		window
+			style		WINDOW_STYLE_FILLED
+			rect		624 420 -304 -180
+			background	"gfx/menus/hud/thermal/thermal_background"
+			backcolor	1 1 1 1
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_THERMAL
+		}
+	}
+
+	// Night vision
+	menuDef
+	{
+		name		"nightvision"
+		fullScreen	0
+		visible		1
+		rect		0 0 640 480
+
+		itemDef
+		{
+			style		WINDOW_STYLE_FILLED
+			rect		0 0 16 480
+			backcolor	0 0 0 1
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_NIGHTVISION
+		}
+
+		itemDef
+		{
+			style		WINDOW_STYLE_FILLED
+			rect		624 0 16 480
+			backcolor	0 0 0 1
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_NIGHTVISION
+		}
+
+		itemDef
+		{
+			style		WINDOW_STYLE_FILLED
+			rect		0 0 640 60
+			backcolor	0 0 0 1
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_NIGHTVISION
+		}
+
+		itemDef
+		{
+			style		WINDOW_STYLE_FILLED
+			rect		0 420 640 60
+			backcolor	0 0 0 1
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_NIGHTVISION
+		}
+
+		itemDef
+		{
+			style		WINDOW_STYLE_SHADER
+			rect		16 60 304 180
+			background	"gfx/menus/hud/night_vision/night_vision_background"
+			backcolor	1 1 1 1
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_NIGHTVISION
+		}
+
+		itemDef
+		{
+			name		window
+			style		WINDOW_STYLE_FILLED
+			rect		624 60 -304 180
+			background	"gfx/menus/hud/night_vision/night_vision_background"
+			backcolor	1 1 1 1
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_NIGHTVISION
+		}
+
+		itemDef
+		{
+			name		window
+			style		WINDOW_STYLE_FILLED
+			rect		16 420 304 -180
+			background	"gfx/menus/hud/night_vision/night_vision_background"
+			backcolor	1 1 1 1
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_NIGHTVISION
+		}
+
+		itemDef
+		{
+			name		window
+			style		WINDOW_STYLE_FILLED
+			rect		624 420 -304 -180
+			background	"gfx/menus/hud/night_vision/night_vision_background"
+			backcolor	1 1 1 1
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_NIGHTVISION
+		}
+	}
+
+	// Sniper scope
+	menuDef
+	{
+		name		"sniperscope"
+		fullScreen	0
+		visible		1
+		rect		0 0 640 480
+
+		itemDef
+		{
+			name		window
+			style		WINDOW_STYLE_FILLED
+			rect		0 0 320 240
+			background	"gfx/menus/hud/scope/background/background"
+			backcolor	1 1 1 1
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_SNIPERSCOPE
+		}
+
+		itemDef
+		{
+			name		window
+			style		WINDOW_STYLE_FILLED
+			rect		640 0 -320 240
+			background	"gfx/menus/hud/scope/background/background"
+			backcolor	1 1 1 1
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_SNIPERSCOPE
+		}
+
+		itemDef
+		{
+			name		window
+			style		WINDOW_STYLE_FILLED
+			rect		0 480 320 -240
+			background	"gfx/menus/hud/scope/background/background"
+			backcolor	1 1 1 1
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_SNIPERSCOPE
+		}
+
+		itemDef
+		{
+			name		window
+			style		WINDOW_STYLE_FILLED
+			rect		640 480 -320 -240
+			background	"gfx/menus/hud/scope/background/background"
+			backcolor	1 1 1 1
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_SNIPERSCOPE
+		}
+
+		itemDef
+		{
+			name		window
+			style		WINDOW_STYLE_FILLED
+			rect		88 238 247 16
+			background	"gfx/menus/hud/scope/reticle/reticle"
+			backcolor	1 1 1 1
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_SNIPERSCOPE
+		}
+
+		itemDef
+		{
+			name		window
+			style		WINDOW_STYLE_FILLED
+			rect		552 238 -247 16
+			background	"gfx/menus/hud/scope/reticle/reticle"
+			backcolor	1 1 1 1
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_SNIPERSCOPE
+		}
+
+		itemDef
+		{
+			name		window
+			style		WINDOW_STYLE_FILLED
+			rect		308 9 16 247
+			background	"gfx/menus/hud/scope/reticle/reticle2"
+			backcolor	1 1 1 1
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_SNIPERSCOPE
+		}
+
+		itemDef
+		{
+			name		window
+			style		WINDOW_STYLE_FILLED
+			rect		308 471 16 -247
+			background	"gfx/menus/hud/scope/reticle/reticle2"
+			backcolor	1 1 1 1
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_SNIPERSCOPE
+		}
+
+		itemDef
+		{
+			name		window
+			style		WINDOW_STYLE_SHADER
+			rect		530 370 64 64
+			background	"gfx/menus/hud/scope/clip_background/clip_background"
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_SNIPERCLIP
+		}
+
+		itemDef
+		{
+			name		window
+			rect		534 374 64 8
+			background	"gfx/menus/hud/scope/bullet/bullet"
+			ownerdraw	CG_PLAYER_SNIPER_BULLET_1
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_SNIPERCLIP
+		}
+		itemDef
+		{
+			name		window
+			rect		534 384 64 8
+			background	"gfx/menus/hud/scope/bullet/bullet"
+			ownerdraw	CG_PLAYER_SNIPER_BULLET_2
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_SNIPERCLIP
+		}
+		itemDef
+		{
+			name		window
+			rect		534 394 64 8
+			background	"gfx/menus/hud/scope/bullet/bullet"
+			ownerdraw	CG_PLAYER_SNIPER_BULLET_3
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_SNIPERCLIP
+		}
+		itemDef
+		{
+			name		window
+			rect		534 404 64 8
+			background	"gfx/menus/hud/scope/bullet/bullet"
+			ownerdraw	CG_PLAYER_SNIPER_BULLET_4
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_SNIPERCLIP
+		}
+		itemDef
+		{
+			name		window
+			rect		534 414 64 8
+			background	"gfx/menus/hud/scope/bullet/bullet"
+			ownerdraw	CG_PLAYER_SNIPER_BULLET_5
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_SNIPERCLIP
+		}
+		itemDef
+		{
+			name		window
+			rect		98 222 64 8
+			background	"gfx/menus/hud/scope/bullet/bullet"
+			ownerdraw	CG_PLAYER_SNIPER_MAGNIFICATION
+			textfont	"hud"
+			textscale	.5
+			visible		1
+			forecolor	.8 .8 .8 1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_SNIPERSCOPE
+		}
+	}
+
+	menuDef
+	{
+		name		"useicon"
+		fullscreen	0
+		visible		1
+   		rect		250 397 200 26
+
+		itemDef
+		{
+			name		"window"
+			rect		0 0 30 30
+			visible		1
+			ownerdraw	CG_USE_ICON
+			decoration
+		}
+
+
+		itemDef
+		{
+			name		"window"
+			rect		2 2 26 26
+			visible		1
+			ownerdraw	CG_PLAYER_GAMETYPE_ITEMS
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_HEALTH
+		}
+	}
+
+	// HUD + Health & armor.
+	menuDef
+	{
+    	name "statusbar"
+    	fullScreen 0
+    	visible 1
+   		rect 0 445 640 40
+
+		itemDef
+		{
+			name		"coloredhud"
+			rect		0 0 640 40
+    		visible		1
+    		forecolor	.8 .87 .62 1
+			ownerdraw	CG_PLAYER_HUD
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_HEALTH
+			ownerdrawflag	CG_SHOW_ANYNONTEAMGAME
+		}
+
+		itemDef
+		{
+			name		"coloredhud"
+			rect		0 0 640 40
+    		visible		1
+    	//	forecolor	.3 .3 1 1
+			ownerdraw	CG_PLAYER_HUD
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_HEALTH
+			ownerdrawflag	CG_SHOW_ONBLUETEAM
+			ownerdrawflag	CG_SHOW_ANYTEAMGAME
+		}
+
+		itemDef
+		{
+			name		"coloredhud"
+			rect		0 0 640 40
+    		visible		1
+    	//	forecolor	1 .1 .1 1
+			ownerdraw	CG_PLAYER_HUD
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_HEALTH
+			ownerdrawflag	CG_SHOW_ONREDTEAM
+			ownerdrawflag	CG_SHOW_ANYTEAMGAME
+		}
+
+		itemDef
+		{
+			name		"armor"
+			style		WINDOW_STYLE_FILLED
+			rect		21 12 75 8 //40 0 125 8
+			backcolor	.6 .6 .6 1
+			border		0
+			bordercolor	0 0 0 1
+			visible		1
+			ownerwidth	CG_PLAYER_ARMOR
+			cvarTest	"cg_drawNumericHealth"
+			hideCvar
+			{
+			 "1";
+			}
+			ownerdrawflag	CG_SHOW_HUD_HEALTH
+		}
+
+		itemDef
+		{
+			name		"health"
+			style		WINDOW_STYLE_FILLED
+			rect		21 22 75 8 //40 8 125 8
+			backcolor	.09 .129 .121 1
+			border		0
+			bordercolor	0 0 0 1
+			visible		1
+			ownerwidth	CG_PLAYER_HEALTH_FADE
+			cvarTest	"cg_drawNumericHealth"
+			hideCvar
+			{
+			 "1";
+			}
+			ownerdrawflag	CG_SHOW_HUD_HEALTH
+		}
+
+		itemDef
+		{
+			name		"health"
+			style		WINDOW_STYLE_FILLED
+			rect		21 22 75 8//40 8 125 8
+			backcolor	1 .3 0 1
+			border		0
+			bordercolor	0 0 0 1
+			visible		1
+			ownerwidth	CG_PLAYER_HEALTH
+			cvarTest	"cg_drawNumericHealth"
+			hideCvar
+			{
+			 "1";
+			}
+
+			ownerdrawflag	CG_SHOW_HUD_HEALTH
+			ownerdrawflag	CG_SHOW_ANYNONTEAMGAME
+		}
+
+		itemDef
+		{
+			name		"health"
+//			style		WINDOW_STYLE_FILLED
+			rect		21 22 75 8//40 8 125 8
+			backcolor	1 .1 .1 1
+			border		0
+			bordercolor	0 0 0 1
+			visible		1
+			ownerdraw	CG_PLAYER_HEALTH
+			cvarTest	"cg_drawNumericHealth"
+			hideCvar
+			{
+			 "1";
+			}
+
+			ownerdrawflag	CG_SHOW_HUD_HEALTH
+			ownerdrawflag	CG_SHOW_ONREDTEAM
+			ownerdrawflag	CG_SHOW_ANYTEAMGAME
+		}
+
+		itemDef
+		{
+			name		"health"
+//			style		WINDOW_STYLE_FILLED
+			rect		21 22 75 8//40 8 125 8
+			backcolor	.3 .3 1 1
+			border		0
+			bordercolor	0 0 0 1
+			visible		1
+			ownerdraw	CG_PLAYER_HEALTH
+			cvarTest	"cg_drawNumericHealth"
+			hideCvar
+			{
+			 "1";
+			}
+			ownerdrawflag	CG_SHOW_HUD_HEALTH
+			ownerdrawflag	CG_SHOW_ONBLUETEAM
+			ownerdrawflag	CG_SHOW_ANYTEAMGAME
+		}
+
+		itemDef
+		{
+      		name		"statusicons"
+			rect		58 14 13 13 //13 13//30 0 8 8
+			style		WINDOW_STYLE_SHADER
+			background	"gfx/menus/hud/hud_health_aicon.png"
+			visible		1
+			decoration
+			cvarTest	"cg_drawNumericHealth"
+			hideCvar
+			{
+			 "0";
+			}
+			ownerdrawflag	CG_SHOW_HUD_HEALTH
+		}
+		itemDef
+		{
+      		name		"statusicons"
+			rect		9 12 8 8//30 0 8 8
+			style		WINDOW_STYLE_SHADER
+			background	"gfx/menus/hud/hud_health_aicon.png"
+			visible		1
+			decoration
+			cvarTest	"cg_drawNumericHealth"
+			hideCvar
+			{
+			 "1";
+			}
+			ownerdrawflag	CG_SHOW_HUD_HEALTH
+		}
+
+		itemDef
+		{
+      		name		"statusicons"
+			rect		10 14 13 13 //30 8 8 8
+			style		WINDOW_STYLE_SHADER
+			background	"gfx/menus/hud/hud_health_hicon.png"
+			visible		1
+			decoration
+			cvarTest	"cg_drawNumericHealth"
+			hideCvar
+			{
+			 "0";
+			}
+			ownerdrawflag	CG_SHOW_HUD_HEALTH
+		}
+		itemDef
+		{
+      		name		"statusicons"
+			rect		9 22 8 8 //30 8 8 8
+			style		WINDOW_STYLE_SHADER
+			background	"gfx/menus/hud/hud_health_hicon.png"
+			visible		1
+			decoration
+			cvarTest	"cg_drawNumericHealth"
+			hideCvar
+			{
+			 "1";
+			}
+			ownerdrawflag	CG_SHOW_HUD_HEALTH
+		}
+	/*	itemDef
+		{
+      		name		"statusbar"
+			rect		29 12 80 16//40 0 128 16
+			style		WINDOW_STYLE_SHADER
+			background	"gfx/menus/hud/hud_health_outline.png"
+			visible		1
+			decoration
+			cvarTest	"cg_drawNumericHealth"
+
+			hideCvar
+			{
+			 "1";
+			}
+
+			ownerdrawflag	CG_SHOW_HUD_HEALTH
+		}*/
+
+		itemDef
+		{
+			name			window
+			rect			73 13 27 8 //0 0 27 8
+			textfont		"hud"
+			textscale		.45 //.25
+			forecolor		1 1 1 1
+			ownerdraw		CG_PLAYER_ARMOR_TEXT
+			visible			1
+			decoration
+			cvarTest	"cg_drawNumericHealth"
+			hideCvar
+			{
+			 "0";
+			}
+
+			ownerdrawflag	CG_SHOW_HUD_HEALTH
+		}
+		itemDef
+		{
+			name			window
+			rect			25 13 27 7
+			textfont		"hud"
+			textscale		.21
+			forecolor		1 1 1 1
+			ownerdraw		CG_PLAYER_ARMOR_TEXT
+			visible			1
+			decoration
+			cvarTest	"cg_drawNumericHealth"
+			hideCvar
+			{
+			 "1";
+			}
+
+			ownerdrawflag	CG_SHOW_HUD_HEALTH
+		}
+		itemDef
+		{
+			name			window
+			rect			26 13 27 8 //0 8 27 8
+			textfont		"hud"
+			textscale		.45 //.25
+			forecolor		1 1 1 1
+			ownerdraw		CG_PLAYER_HEALTH_TEXT
+			visible			1
+			decoration
+			cvarTest	"cg_drawNumericHealth"
+			hideCvar
+			{
+			 "0";
+			}
+			ownerdrawflag	CG_SHOW_HUD_HEALTH
+		}
+		itemDef
+		{
+			name			window
+			rect			25 23 27 7
+			textfont		"hud"
+			textscale		.21
+			forecolor		1 1 1 1
+			ownerdraw		CG_PLAYER_HEALTH_TEXT
+			visible			1
+			decoration
+			cvarTest	"cg_drawNumericHealth"			
+			hideCvar
+			{
+			 "1";
+			}
+			ownerdrawflag	CG_SHOW_HUD_HEALTH
+		}
+	}
+
+	// HUD weapon list.
+	menuDef
+	{
+		name			"weaponhud"
+		fullScreen		0
+		visible			1
+		rect			135 448 370 23
+
+
+		itemDef
+		{
+			name		"weaponhudblock"
+			rect		0 0 370 23
+    		visible		1
+    	//	forecolor	.8 .87 .62 1
+			ownerdraw	CG_PLAYER_WEAPON_LIST
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_WEAPONINFO
+			ownerdrawflag	CG_SHOW_ONBLUETEAM
+			ownerdrawflag	CG_SHOW_ANYTEAMGAME
+		}
+		itemDef
+		{
+			name		"weaponhudblock"
+			rect		0 0 370 23
+    		visible		0
+    	//	forecolor	//.8 .87 .62 1
+			ownerdraw	CG_PLAYER_WEAPON_LIST
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_WEAPONINFO
+			ownerdrawflag	CG_SHOW_ONREDTEAM
+			ownerdrawflag	CG_SHOW_ANYTEAMGAME
+		}
+		itemDef
+		{
+			name		"weaponhudblock"
+			rect		0 0 370 23
+    		visible		1
+    		forecolor	.8 .87 .62 1 //DM green
+			ownerdraw	CG_PLAYER_WEAPON_LIST
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_WEAPONINFO
+			ownerdrawflag	CG_SHOW_ANYNONTEAMGAME
+		}
+	}
+	// clock
+	menuDef
+	{
+    	name "clock"
+    	fullScreen 0
+    	visible 1
+   		rect 635 200 10 10	// 504 450 10 10 // pimpy
+
+		itemDef
+		{
+			name		window
+			rect		0 0 10 10
+			textfont	"hud"
+			textscale	.5
+			ownerdraw	CG_HUD_CLOCK
+			visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_CLOCK
+		}
+	}
+
+	// timeleft
+	menuDef
+	{
+    	name "timeleft"
+    	fullScreen 0
+    	visible 1
+   		rect 635 240 10 10
+
+		itemDef
+		{
+			name		window
+			rect		0 0 10 10
+			textfont	"hud"
+			textscale	.4
+			ownerdraw	CG_HUD_TIMELEFT
+    		visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_TIMELEFT
+		}
+	}
+
+	// match
+	menuDef
+	{
+    	name "inmatch"
+    	fullScreen 0
+    	visible 1
+   		rect 635 280 10 10
+
+		itemDef
+		{
+			name		window
+			rect		0 0 10 10
+			textfont	"hud"
+			textscale	.35
+			ownerdraw	CG_HUD_INMATCH
+    		visible		1
+			decoration
+
+			ownerdrawflag	CG_SHOW_HUD_INMATCH
+		}
+	}
+
+	// visual weapon list
+	menuDef
+	{
+    	name "weaponlist"
+    	fullScreen 0
+    	visible 1
+   		rect 0 32 320 320
+
+		itemDef
+		{
+   			name "Weapon List"
+			rect 0 0 320 320
+			visible 1
+			decoration
+			textstyle ITEM_TEXTSTYLE_SHADOWED
+			forecolor 1 1 1 .3
+			ownerdraw CG_WEAPON_LIST
+		}
+	}
+}

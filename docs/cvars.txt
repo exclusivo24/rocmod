@@ -1,0 +1,822 @@
+Due to the huge number of cvars added to the game by ROCmod, it is recommended
+that you place the server cvars in a separate config file, and +exec that cfg
+file in your startup script. Config files have a size limit of 16k, and adding
+all of these cvars to the default cfg can easily exceed that limit, which will
+cause the server to ignore the entire cfg file and use defaults.
+
+
+
+CLIENT CVARS
+============
+
+cg_drawClock
+	default: 1
+	desc: Draws the current time on the screen.
+
+cg_drawEnhancedHUD
+	default: 1
+	desc: If set, uses the new HUD layout. Otherwise, the original SOF2
+	      HUD will be used.
+
+cg_drawEnhancedScoreboard
+	default: 1
+	desc: If set, draws the enhanced scoreboard with extra player info.
+	      Otherwise, the original SOF2 scoreboard will be drawn.
+
+cg_drawBestStats
+	default: 1
+	desc: Displays "Best Player" stats on the scoreboard at
+	      the end of the game.
+
+cg_allowVoiceCommandSounds
+	default: 1
+	desc: Allows a player to enable/disable hearing the voice command sounds.
+	      This does not affect the text being displayed for the voice command.
+	      1 = Allow all voice command sounds.
+	      2 = Allow only voice command sounds from your team.
+	      0 = Disable voice command sounds.
+
+cg_drawDetailedObituary
+	default: 1
+	desc: If set, the console obituary messages (who killed who with what)
+	      will show what body part was hit in the kill.
+	      1 = General detail (i.e. "leg")
+	      2 = Full detail (i.e. "left thigh")
+	      0 = No detail
+
+cg_drawTeamInfo
+	default: 0
+	desc: If set, allows you to view teammate health/armor under your crosshair.
+	      This cvar is off by default as it uses some extra bandwidth.
+
+cg_drawSpecList
+	default: 0
+	desc: If set, allows you to see a list of players that are spectating you.
+	      This cvar is off by default as it uses some extra bandwidth.
+
+cg_drawTeamOverlay
+	default: 0
+	desc: Allows you to view a list of all teammates in the corner of the 
+	      screen, along with their health, armor, weapon, and position. Set to
+		  the maximum number of players you want listed. Set to 0 to disable.
+	      This cvar is off by default as it uses some extra bandwidth.
+
+cg_drawCustomTeams
+	default: 1
+	desc: If set, team names and team colors can change appearance based on the
+	      server setup.
+
+cg_autoScreenshot
+	default: 1
+	desc: Allows screenshots to be automatically saved of the intermission
+	      scoreboard after a game.
+	      0 = Disabled
+	      1 = Auto screenshot after a match
+	      2 = Auto screenshot after every game
+
+cg_autoDemo
+	default: 0
+	desc: Determines whether a demo is automatically recorded during a match.
+
+cg_drawFriend
+	default: 1
+	desc: This cvar controls what sort of teammate identification is draw on players.
+	      This is an existing SOF2 cvar which has been extended.
+	      0 = None
+	      1 = Team flag is drawn over each player
+	      2 = Player name is drawn over each player (experimental)
+
+cg_drawTimeLeft
+	default: 0
+	desc: Draws the time remaining (timelimit) on the screen.
+
+
+
+SERVER CVARS
+============
+
+Server Config
+---------------
+
+sv_adminfile
+	default: "admin.cfg"
+	desc: Specifies the file that holds the admin GUIDs.
+
+sv_sysopfile
+	default: "sysop.cfg"
+	desc: Specifies the file that holds the sysop GUIDs.
+
+sv_extracmdsfile
+	default: "extracmds.cfg"
+	desc: Specifies the file that holds rcon commands available to admins.
+
+sv_voicecmdsfile
+	default: "voicecmds.cfg"
+	desc: Specifies the file that holds the voice commands.
+
+sv_clanfile
+	default: "clan.cfg"
+	desc: Specifies the file that holds the clan member GUIDs.
+
+sv_minRate
+	default: 2500
+	desc: Specifies the minimum rate a player can connect with before being
+	      warned and eventually kicked.
+
+sv_logo
+	default: "gfx/blank.png"
+	desc: This cvar allows you to display a custom 128x128 logo on the loading
+	      screen, opposite the ROCmod logo. Make sure the image name is unique
+	      to your clan or server so that it isn't replaced by another server's
+	      pk3 files. The logo can be in JPG or PNG format, and PNG logos must
+	      be true-color (24-bit or 32-bit).
+
+sv_filterchatfile
+	default: "chatfilter.cfg"
+	desc: Specifies the file that holds the list of banned words, one per line.
+
+g_weaponMod
+	default: "ext_data/sof2.wpn"
+	desc: Determines which weapon settings to use. You can change weapon mods
+	      on the fly by giving each one a different filename, and changing
+	      that filename here. Changes will occur on the next mapcycle.
+
+g_duplicatePlayerMax
+	default: 3
+	desc: Specifies the maximum number of players that may connect to the server
+	      with the same IP.
+
+sv_adminControl
+	default: 0
+	desc: Specifies whether admins and sysops can be added/removed via the player
+	      console or only through rcon.
+	      0 = Admins/sysops can only be added/removed through rcon
+	      1 = Admins/sysops can be added/removed via rcon or the player console
+
+g_adminlog
+	default: "admin.log"
+	desc: Specifies the log file to record all admin activities.
+
+g_scannerlog
+	default: "scanner.log"
+	desc: Specifies the log file to record all file scanner results.
+
+sv_scannerfile
+	default: "scanlist.cfg"
+	desc: Specifies the file that holds the data for the client files to be scanned.
+
+
+Mod verification
+------------------
+
+sv_modClient
+	default: 1
+	desc: Normally, ROCmod functions as a client/server mod, requiring the
+	      clients to download part of the mod for full functionality. If you
+	      wish to run the mod in serverside-only mode, with reduced
+	      functionality, set this cvar to zero and delete the client file
+	      from the server.
+	      On unpure servers, clients who already have the clientside files
+	      are still allowed to use them if g_verifyClients is on.
+
+g_verifyClients
+	default: 1
+	desc: If set, clients will be checked to make sure they are running the
+	      same version of the mod as the server. Unverified clients will
+	      receive a periodic warning message.
+
+g_verifyClientsTime
+	default: 30
+	desc: Specifies the length of time (in seconds) between warnings sent
+	      to unverified clients.
+
+g_verifyClientsMax
+	default: 0
+	desc: Specifies the number of times an unverified client will be sent
+	      warnings before being kicked. Set to 0 to disable.
+
+
+MOTD
+------
+
+g_motdEnabled
+	default: 1
+	desc: Draws an in-game motd.
+
+g_motdDisplayTime
+	default: 10
+	desc: number of seconds to display the in-game motd.
+
+g_motd1
+g_motd2
+g_motd3
+g_motd4
+g_motd5
+g_motd6
+g_motd7
+g_motd8
+g_motd9
+g_motd10
+	default: ""
+	desc: Text for the in-game motd.
+	      NOTE: Due to cfg size constraints, in-game changes to these cvars
+	            are no longer saved automatically.
+
+
+Teamkill/Spawnkill/Flag steal
+-------------------------------
+
+g_teamkillNoDouble
+	default: 0
+	desc: By default, SOF2 doubles teamkill percentages when the person you
+	      killed was carrying a gametype item (i.e. flag). Set this cvar to
+	      turn that behavior off. This is most useful when used with the
+	      flag penalty cvars.
+
+g_teamkillAutoPenaltyBox
+	default: 200
+	desc: Level of damage a player can do to teammates before being
+	      automatically thrown into the penalty box. Set to 0 to disable.
+
+g_teamkillAutoPenaltyBoxTime
+	default: 60
+	desc: Lentgh of time (in seconds) a player will stay in the penalty box
+	      when thrown in for teamkilling.
+
+g_teamkillWarning
+	default: 0
+	desc: If set, players receive a warning every time they injure a teammate.
+
+g_teamkillBackfire
+	default: 0
+	desc: Percentage of teamkill damage that will backfire and hit the attacker.
+	      Set to 0 to disable.
+
+g_teamkillVoteKick
+	default: 75
+	desc: Determines the TK percentage a player can reach before a vote is
+	      automatically started to kick them. Set to 0 to disable.
+
+g_flagstealAutoPenaltyBox
+	default: 1
+	desc: If set, players who steal the flag from teammates are automatically
+	      thrown into the penalty box.
+
+g_flagstealAutoPenaltyBoxTime
+	default: 60
+	desc: Length of time (in seconds) a player will stay in the penalty box
+	      when thrown in for flag stealing.
+
+g_flagstealWarning
+	default: 1
+	desc: If set, players receive a warning when they pick up a stolen flag.
+
+g_spawnkillAutoPenaltyBox
+	default: 200
+	desc: Level of damage a player can do to spawned players before being
+	      automatically thrown into the penalty box. Set to 0 to disable.
+
+g_spawnkillAutoPenaltyBoxTime
+	default: 60
+	desc: Lentgh of time (in seconds) a player will stay in the penalty box
+	      when thrown in for spawn killing.
+
+g_spawnkillWarning
+	default: 0
+	desc: If set, players receive a warning every time they injure a spawned
+	      player.
+
+g_spawnkillBackfire
+	default: 0
+	desc: Percentage of spawnkill damage that will backfire and hit the attacker.
+	      Set to 0 to disable.
+
+g_spawnkillDeathmatch
+	default: 0
+	desc: If set, spawnkill protection is applied to non-team games such as
+	      deathmatch. Normally, spawnkill protection applies to team-based
+		  gametypes only.
+
+
+Admin commands
+----------------
+
+g_sysopImmuneToAdmin
+	default: 1
+	desc: If set, admins are unable to perform admin commands on sysops.
+	      (i.e. strike, slap, penalty, mute, etc.)
+
+g_allowTalk
+g_allowChat
+g_allowKick
+g_allowBan
+g_allowCancelVote
+g_allowPassVote
+g_allowWarmup
+g_allowFriendlyFire
+g_allowMute
+g_allowStrike
+g_allowSlap
+g_allowStrip
+g_allowSwitch
+g_allowPenalty
+g_allowUnPenalty
+g_allowGametype
+g_allowMapRestart
+g_allowMapcycle
+g_allowSetMap
+g_allowRMG
+g_allowExtendTime
+g_allowTimelimit
+g_allowScorelimit
+g_allowSwapTeams
+g_allowShuffleTeams
+g_allowEndMap
+g_allowLockTeam
+g_allowSuspendAll
+g_allowFry
+g_allowLaunch
+g_allowExplode
+g_allowPlant
+g_allowTelefrag
+g_allowSurrender
+g_allowRespawn
+g_allowBait
+g_allowEvenTeams
+g_allowInvite
+g_allowForceSay
+g_allowSwap
+g_allowClanVsAll
+g_allowPause
+g_allowUnPause
+g_allowPbKick
+g_allowPbBan
+g_allowPbGetSS
+g_allowFreezeMap
+g_allowMatch
+g_allowDummy
+g_allowNoVote
+g_allowRename
+g_allowCvarCheck
+g_allowCfg
+g_allowTag
+g_allowTagVsAll
+g_allowCripple
+g_allowBackfire
+g_allowPassword
+g_allowReset
+	default: "0200"
+	desc: Specifies which commands are enabled and available for use by various
+	      players. This cvar contains a row of four digits, each digit
+	      representing a different setting.
+	      First digit: Superior restrictions
+	      		0 = Command is not restricted while a superior sysop/admin is present
+	      		1 = Command is restricted while a superior sysop/admin is present
+	      		2 = Command is restricted when a superior sysop/admin is not present
+	      Second digit: Admin commands
+	      		0 = Command is disabled for all admins
+	      		1 = Command is enabled for all admins
+	      		2 = Command is enabled for all admins, even while suspended
+	      Third digit: Referee commands
+	      		0 = Command is disabled for all referees
+	      		1 = Command is enabled for all referees
+	      Fourth digit: Clan member commands
+	      		0 = Command is disabled for all clan members
+	      		1 = Command is enabled for all clan members
+	      NOTE: Due to cfg size constraints, in-game changes to these cvars
+	            are no longer saved automatically.
+
+g_disableAdminInPenaltyBox
+	default: 1
+	desc: If set, admins who get thrown into the penalty box are unable to use
+	      any admin commands until they get out.
+
+g_enableAdmin
+	default: 1
+	desc: If set, admins are allowed on the server.
+
+g_enableReferee
+	default: 1
+	desc: If set, referees are allowed on the server.
+
+g_enableModerator
+	default: 1
+	desc: If set, match moderators are allowed on the server.
+
+g_adminVote
+	default: 1
+	desc: Specifies how voting is handled for admins.
+	      0 = Admins cannot call a vote if voting is disabled
+	      1 = Admins can call a vote at any time, even if disabled
+	      2 = Admins can call a vote at any time, and the vote will immediately
+		      pass (if active admin)
+
+g_defaultBanTime
+	default: 15
+	desc: Specifies the default ban time used by the admin menu.
+
+g_defaultPenaltyBoxTime
+	default: 60
+	desc: Default length of time (in seconds) a player will stay in the
+	      penalty box when no time period has been specified by an admin.
+
+g_refereePass
+	default: "none"
+	desc: Sets a global referee password, which can be used by players to make
+	      themselves referees.
+
+g_suspendedAdmin
+	default: 0
+	desc: If set, admins and sysops are automatically suspended when they join
+	      the server. They must manually unsuspend to use their priviledges.
+
+g_anonymousAdmin
+	default: 0
+	desc: Determines whether a player's admin status is revealed, and all admin
+	      actions made anonymous.
+	      0 = A player's admin status is not hidden
+	      1 = A player's admin status is hidden and all actions are anonymous
+	      2 = Admins are anonymous, and not visible on the scoreboard while spectating
+
+g_allowAdminGhost
+	default: 0
+	desc: If set, active admins are able to suspend their respawn counter while
+	      dead.
+
+g_adminBackfire
+	default: 0
+	desc: If set, teamkill and spawnkill backire will apply to admins as well.
+
+g_protectClan
+	default: 1
+	desc: If set, clan members can not be vote kicked or banned from the server.
+
+g_dummyReward
+	default: 1
+	desc: Score points awarded for killing a target dummy.
+
+
+Realism
+---------
+
+g_realisticSniper
+	default: 1
+	desc: If set, sniper accuracy is greatly reduced while running and jumping
+	      to prevent unrealistic no-scope shots
+
+g_realisticShotgun
+	default: 0
+	desc: If set, the shotgun blasts are tested against the player model rather
+	      than the players bounding box. This fixes the crouch/lean exploit.
+	      This cvar is off by default as it may slightly increase game lag.
+
+g_realisticAmmo
+	default: 0
+	desc: If set, reloading a weapon will replace the entire clip, rather than
+	      refilling it.
+
+
+Server messaging
+------------------
+
+g_message1
+g_message2
+g_message3
+g_message4
+g_message5
+g_message6
+g_message7
+g_message8
+g_message9
+g_message10
+	default: ""
+	desc: Text for the periodic server messaging.
+	      NOTE: Due to cfg size constraints, in-game changes to these cvars
+	            are no longer saved automatically.
+
+g_messageEnabled
+	default: 0
+	desc: Enables or disables the periodic server messages.
+
+g_messageStart
+	default: 60
+	desc: Number of seconds to wait after the last server message before
+	      starting the first one again.
+
+g_messageInterval
+	default: 60
+	desc: Number of seconds to wait between displaying each server message.
+
+g_messageNew
+	default: ""
+	desc: Text displayed whenever a new player joins.
+
+
+Camping
+---------
+
+g_camper
+	default: 0
+	desc: Specifies the length of time (in seconds) a player can camp in one area
+	      before being warned (and possibly killed) for camping. Set to 0 to
+		  disable.
+
+g_camperRadius
+	default: 200
+	desc: Specifies the radius of movement within which a player is considered
+	      camping. This number is roughly in inches.
+
+g_camperMode
+	default: 0
+	desc: Determines how campers are dealt with after the length of time
+	      specified by the g_camper cvar.
+	      0 = All players are notified and punished for camping
+	      1 = All players except snipers are notified and punished for camping
+
+g_camperAction
+	default: 0
+	desc: Determines how campers are to be punished.
+	      0 = Campers are killed
+	      1 = Campers are kicked
+	      2 = Campers are marked as dummies
+	      3 = Campers are planted
+	      4 = Campers are surrendered
+
+
+Custom teams
+--------------
+
+g_allowCustomTeams
+	default: 0
+	desc: If set, the team names and team colors can be customized.
+
+g_customBlueName
+	default: "Blue"
+	desc: The name of the Blue team.
+
+g_customBlueCode
+	default: "4"
+	desc: The color code for the Blue team. Used for server text.
+
+g_customBlueShade
+	default: "30,30,100"
+	desc: The RGB color shade for the Blue team. Used for client coloring.
+	      NOTE: Each number is written as a percentage, 0-100, rather than 0-255.
+
+g_customRedName
+	default: "Red"
+	desc: The name of the Red team.
+
+g_customRedCode
+	default: "1"
+	desc: The color code for the Red team. Used for server text.
+
+g_customRedShade
+	default: "100,10,10"
+	desc: The RGB color shade for the Red team. Used for client coloring.
+	      NOTE: Each number is written as a percentage, 0-100, rather than 0-255.
+
+g_customClanShade
+	default: "100,50,0"
+	desc: The RGB color shade for clan members. Used to color the scoreboard.
+	      NOTE: Each number is written as a percentage, 0-100, rather than 0-255.
+
+
+Chat
+------
+
+g_voiceCommandsEnabled
+	default: 1
+	desc: Determines whether voice command sounds will be played or not.
+	      0 = All voice commands are disabled
+	      1 = All voice commands are enabled (normal mode)
+	      2 = All voice commands are enabled (server mode, may reduce server lag
+	          but will also override the client's cg_allowVoiceCommandSounds cvar)
+
+g_voiceTalkingGhosts
+	default: 1
+	desc: If set, ghosts (dead players) are able to talk to alive players in
+	      non-respawn games (such as inf and dem). This cvar is on by default,
+	      since it already existed in the game (though it was disfunctional).
+
+g_filterChat
+	default: 0
+	desc: If set, all chat text is filtered for banned words, as specified by the
+	      server in the sv_filterchatfile file.
+
+g_globalMute
+	default: 0
+	desc: If set, all players are permanently muted except during warmup,
+	      intermission, and pause.
+
+
+Player features
+-----------------
+
+g_allowColorNames
+	default: 1
+	desc: If set, colored player names are shown in team-based games.
+	      Set to 0 to use only team colors. Changes to this cvar are deferred
+	      until player change or mapcycle.
+
+g_explosionGore
+	default: 0
+	desc: If set, SMOHG92 and M203 grenade explosions cause massive
+	      dismemberment gore at close range (rather than the player just
+	      falling over).
+	      NOTE: This cvar is now off by default, due to the video lag it can
+	            cause if there are many explosions visible.
+
+g_clientFeatures
+	default: 3
+	desc: Determines how often (in seconds) server-controlled client features
+	      are sent to players. These features require periodic updates, and may
+	      slightly increase lag. This currently includes the following features:
+	       - Teammate info
+	       - Spectator list
+	       - Team overlay
+	      Quicker updates look nicer, but require more server CPU time and may
+		  increase lag. Set to 0 to disable.
+
+g_punishRecon
+	default: 0
+	desc: If set, players will be unable to get out of punishment by reconnecting.
+	      0 = No player data is saved through a reconnect
+	      1 = Punishments are remembered and reapplied after a reconnect
+	      2 = Both punishments and player score/stats are remembered and
+		      reapplied after a reconnect
+
+g_voteLimit
+	default: 5
+	desc: The maximum number of votes a player can call during a map.
+
+g_autoMatchDemo
+	default: 1
+	desc: Determines whether all clients should automatically start a demo when
+	      a match starts.
+	      0 = A demo will never be started automatically
+	      1 = A demo may be started if the player has cg_autoDemo enabled
+
+disable_armor
+disable_thermal
+disable_nightvision
+	default: 0
+	desc: These cvars have been added to match the existing disable_weapon_*
+	      cvars, to allow servers to prevent players from using these items.
+		  Changes will take effect on the next mapcycle.
+	      NOTE: Currently, players are still able to outfit these items, they are
+	            just unable to use them.
+
+
+Gameplay
+----------
+
+g_mapcycleSwapTeams
+	default: 0
+	desc: If set, teams are automatically swapped at the end of a map.
+
+g_mapcycleShuffleTeams
+	default: 0
+	desc: If set, teams are automatically shuffled up at the end of a map.
+
+g_bestStatsMinKills
+	default: 0
+	desc: Determines the minimum number of kills a player has to have to be
+	      included in the "Best Player" stats.
+
+g_bestStatsTime
+	default: 10
+	desc: Specifies how long the intermission stats are displayed before
+	      switching to the scoreboard. Only applies when the server is in
+	      serverside-only mode.
+
+g_allowWarmupFriendlyFire
+	default: 0
+	desc: Determines whether friendly fire is enabled during warmup, and how
+	      warmup respawning is handled.
+	      0 = Friendly fire is disabled
+	      1 = Friendly fire is enabled, and gametype respawn points are used
+	      2 = Friendly fire is enabled, and deathmatch respawn points are used
+
+g_intermissionDelay
+	default: 10
+	desc: Specifies the number of seconds the intermission will remain visible
+	      once people click "ready".
+
+g_timeRemaining
+	default: 1
+	desc: If set, players will be notified when 5, 3, and 1 minute is
+	      remaining before the timelimit.
+
+g_inactivitySpectator
+	default: 0
+	desc: If set, spectators will be kicked for inactivity like regular
+	      players.
+
+g_killSpree
+	default: 0
+	desc: If set, the game will announce when players are on killing sprees.
+
+g_doWarmup
+	default: 0
+	desc: This SOF2 cvar controls warmup and has been extended.
+	      0 = Warmup is disabled
+	      1 = Warmup is enabled at the start of each map
+	      2 = Warmup is enabled at the start of each map and when there are
+	          less than 2 players
+
+g_emptyMapcycle
+	default: 0
+	desc: If set, the server will continue to change maps using the mapcycle
+	      even if the server is empty. This is useful to return to a common
+	      map if an unknown map causes the server to clear out.
+
+g_alternateSort
+	default: 0
+	desc: Determines what sort of scoring system to use.
+	      0 = Scores are based on kills and flag caps (SOF2 default)
+	      1 = Scores are based on kill ratios
+
+g_allowItemDrop
+	default: 1
+	desc: Specifies whether players are able to drop gametype items after they
+	      have picked them up.
+
+g_dropWeapon
+	default: 0
+	desc: Determines whether a well-placed shot to a player's hand will cause
+	      them to drop the weapon they are currently holding.
+	      0 = Disabled
+	      1 = Weapon will be dropped, player will switch to knife
+	      2 = Weapon will be dropped, player will switch to next weapon
+
+g_lastPlayer
+	default: 0
+	desc: If set during a non-respawn gametype (i.e. INF or ELIM), players will
+	      receive a message telling them when they are the last player alive on
+		  their team.
+
+g_lockSpec
+	default: 1
+	desc: If set, spectators are unable to spectate locked teams unless invited.
+
+g_suicideTeamPenalty
+	default: 0
+	desc: Normally if a player commits suicide, only their own score is penalized
+	      for it. This cvar determines how much the team as a whole will be
+		  penalized as well. This number will normally be negative. Set to 0 to
+		  disable.
+
+g_teamChangeDeath
+	default: 1
+	desc: By default, switching teams during a game will count as a death to
+	      the player. Set this cvar to 0 to disable this behavior.
+
+g_inactivityAction
+	default: 0
+	desc: Determines how inactive players are dealt with.
+	      0 = Player is kicked
+	      1 = Player is moved to spectator
+	      2 = Both, player will be moved to spectator if they aren't already, and
+	          later kicked if still inactive
+
+g_allowVote
+	default: 1
+	desc: This SOF2 cvar controls voting and has been extended.
+	      0 = Voting is disabled
+	      1 = Voting is enabled, at least half of all players must agree to pass vote
+	      2 = Voting is enabled, at least half of voters must agree to pass vote
+
+g_autoEvenTeams
+	default: 0
+	desc: Specifies how unbalanced the teams can get (how many more players on
+	      one team than the other) before the teams are automatically evened.
+		  Set to 0 to disable.
+
+
+File Scanning
+---------------
+
+g_scannerInterval
+	default: 0
+	desc: Determines how often, in seconds, file verification requests should be sent
+	      to all players. Setting this too low may result in missed responses or even
+		  some client lag. Set to 0 to disable. For more information about file
+		  verification scanning, see scanner.txt.
+
+g_scannerRepeat
+	default: 3
+	desc: Specifies the number of times a scan request will be repeated before assuming
+	      there is no match and taking action (uses the default action). Also determines
+		  the number of times warning messages (if used) will be printed before resuming
+		  the scan.
+
+g_scannerDefaultAction
+	default: 0
+	desc: Determines what action will be taken by default when a verification mis-match
+	      is found.
+		  0 = Player is kicked
+		  1 = Warning message is broadcast to the server
+		  2 = Warning message is broadcast to all admins
+		  3 = Results are only written to the log.
+

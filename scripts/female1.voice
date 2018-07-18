@@ -1,0 +1,202 @@
+//radio calls for vsay_team
+female
+
+careful
+{
+	sound/radio/fmale/careful.wav			"Be careful!"
+}
+
+clear
+{
+	sound/enemy/english/fmale/secure_the_area.mp3	"Clear!"
+}
+
+cover_me
+{
+	sound/radio/fmale/cover_me.wav			"Cover me!"
+}
+
+got_him
+{
+	sound/enemy/english/fmale/got_him.mp3		"Got him!"
+}
+
+got_it
+{
+	sound/enemy/english/fmale/target_acq.mp3	"Got it!"
+}
+
+hold_position
+{
+	sound/radio/fmale/hold_position.wav		"Hold position!"
+}
+
+man_down
+{
+	sound/enemy/english/fmale/man_down01.mp3	"Man down!"
+}
+
+need_backup
+{
+	sound/enemy/english/fmale/call_for_reinforcements.mp3		"Call for Reinforcements!"
+}
+
+obj_complete
+{
+	sound/enemy/english/fmale/obj_complete.mp3		"Objective Complete!"
+}
+
+take_cover
+{
+	sound/enemy/english/fmale/take_cover.mp3		"Take cover!"
+}
+
+under_fire
+{
+	sound/enemy/english/fmale/underfire01.mp3		"Under Fire!"
+}
+
+sniper
+{
+	sound/enemy/english/fmale/watch_out.mp3			"Sniper!"
+}
+
+check_fire
+{
+	sound/enemy/english/fmale/watch_your_fire.mp3		"Watch your Fire!"
+}
+
+fire_hole
+{
+	sound/enemy/english/fmale/watch_out.mp3		"Watch Out!"
+}
+
+grenade
+{
+	sound/enemy/english/fmale/watch_out.mp3		"Watch Out!"
+}
+
+affirmative
+{
+	sound/enemy/english/fmale/yes_sir.mp3		"Yes sir!"
+}
+
+negative
+{
+	sound/npc/civ/english/fmale/go_away.mp3		"Negative!"
+}
+
+incoming
+{
+	sound/enemy/english/fmale/there_he_is.mp3	"INCOMING!"
+}
+
+advance
+{
+	sound/enemy/english/fmale/advance.mp3		"Advance!"
+}
+
+await_orders
+{
+	sound/enemy/english/fmale/awaiting_orders.mp3	"Awaiting orders!"
+}
+
+move
+{
+	sound/npc/civ/english/fmale/moveit.mp3		"Move it!"
+}
+
+yes_sir
+{
+	sound/enemy/english/fmale/yes_sir.mp3		"Yes sir!"
+}
+
+out_ammo
+{
+	sound/enemy/english/fmale/out_ammo.mp3		"I'm out of ammo!"
+}
+
+open_fire
+{
+	sound/enemy/english/fmale/open_fire.mp3		"Open fire!"
+}
+
+secure_the_area
+{
+	sound/enemy/english/fmale/secure_the_area.mp3	"Secure the area!"
+}
+
+stop
+{
+	sound/enemy/english/fmale/stop.mp3		"Stop!"
+}
+
+target_acq
+{
+	sound/enemy/english/fmale/target_acq.mp3	"Target acquired!"
+}
+
+target_eliminate
+{
+	sound/enemy/english/fmale/target_eliminate.mp3	"Target eliminated"
+}
+
+target_lost
+{
+	sound/enemy/english/fmale/target_lost.mp3	"Target lost!"
+}
+
+watch_out
+{
+	sound/enemy/english/fmale/watch_out.mp3		"Watch out!"
+}
+
+watch_yourselves
+{
+	sound/enemy/english/fmale/watch_yourselves.mp3	"Watch yourselves!"
+}
+
+pos_reached
+{
+	sound/enemy/english/fmale/pos_reached.mp3	"Position reached"
+}
+
+hold_here
+{
+	sound/enemy/english/fmale/hold_here.mp3		"Hold here!!"
+}
+
+keep_looking
+{
+	sound/enemy/english/fmale/keep_looking.mp3	"Keep looking!"
+}
+
+check_peri
+{
+	sound/enemy/english/fmale/check_peri.mp3	"Check the perimeter!"
+}
+
+im_hit
+{
+	sound/enemy/english/fmale/im_hit.mp3		"I'm hit!"
+}
+
+dontlet
+{
+	sound/enemy/english/fmale/hold_here.mp3		"Don't let anyone through here!"
+}
+
+secure
+{
+	sound/enemy/english/fmale/success.mp3		"Secure!"
+}
+
+targets_multiple
+{
+	sound/enemy/english/fmale/take_them_out.mp3	"Multiple targets!"
+}
+
+targets_one
+{
+	sound/enemy/english/fmale/there_he_is.mp3	"One target"
+}
