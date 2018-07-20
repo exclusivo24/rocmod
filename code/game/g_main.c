@@ -104,7 +104,7 @@ vmCvar_t	sv_voicecmdsfile;
 vmCvar_t	sv_modClient;
 vmCvar_t	sv_logo;
 vmCvar_t	sv_modVersion;
-vmCvar_t	sv_minRate;
+//vmCvar_t	sv_minRate;		//Download Rate Boost Unused - Maxxi 21/07/2018
 vmCvar_t	sv_filterchatfile;
 vmCvar_t	g_motd1;
 vmCvar_t	g_motd2;
@@ -286,6 +286,8 @@ vmCvar_t	disable_armor;
 vmCvar_t	disable_thermal;
 vmCvar_t	disable_nightvision;
 
+#include "zg_main.c"
+
 static cvarTable_t gameCvarTable[] = 
 {
 	// don't override the cheat state set by the system
@@ -429,7 +431,7 @@ static cvarTable_t gameCvarTable[] =
 	{ &sv_voicecmdsfile, "sv_voicecmdsfile", "voicecmds.cfg", CVAR_ARCHIVE, 0.0f, 0.0f, 0, qfalse },
 	{ &sv_modClient, "sv_modClient", "1", CVAR_SERVERINFO, 0.0f, 0.0f, 0, qfalse },
 	{ &sv_logo, "sv_logo", "gfx/blank.png", CVAR_SYSTEMINFO, 0.0f, 0.0f, 0, qfalse },
-	{ &sv_minRate, "sv_minRate", "2500", CVAR_SERVERINFO, 0.0f, 0.0f, 0, qfalse },
+	//{ &sv_minRate, "sv_minRate", "2500", CVAR_SERVERINFO, 0.0f, 0.0f, 0, qfalse }, //Download Rate Boost Unused - Maxxi 21/07/2018
 	{ &sv_modVersion, "sv_modVersion", ROCMOD_VERSION, CVAR_SYSTEMINFO|CVAR_ROM|CVAR_TEMP, 0.0f, 0.0f, 0, qfalse },
 	{ &sv_filterchatfile, "sv_filterchatfile", "chatfilter.cfg", CVAR_ARCHIVE, 0.0f, 0.0f, 0, qfalse },
 
@@ -616,6 +618,8 @@ static cvarTable_t gameCvarTable[] =
 
 	{ &inMatch, "inMatch", "0", CVAR_SYSTEMINFO|CVAR_ROM|CVAR_TEMP, 0.0f, 0.0f, 0, qfalse },
 	{ &exitReady, "exitReady", "0", CVAR_SYSTEMINFO|CVAR_ROM|CVAR_TEMP, 0.0f, 0.0f, 0, qfalse },
+
+	#include "zg_main_long.c"
 };
 
 // bk001129 - made static to avoid aliasing
@@ -1576,6 +1580,11 @@ void G_InitGame( int levelTime, int randomSeed, int restart )
 
 	// initialize all clients for this game
 	level.maxclients = g_maxclients.integer;
+
+	// If the sysop didn't set a bandwidth for Download Rate Boost throtteling then estimate one. Download Rate Boost - Maxxi, 21/07/2018
+	if ( !trap_Cvar_VariableIntegerValue( "g_bandwidth" ) )
+		trap_Cvar_Set( "g_bandwidth", va("%i", level.maxclients * trap_Cvar_VariableIntegerValue( "sv_maxRate" )) );
+
 	memset( g_clients, 0, MAX_CLIENTS * sizeof(g_clients[0]) );
 	level.clients = g_clients;
 

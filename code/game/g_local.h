@@ -363,9 +363,9 @@ typedef struct
 	qboolean			adminFollow;
 	qboolean			adminFreezeRespawn;
 	int					rate;
-	qboolean			rateVerified;
+	/*qboolean			rateVerified;		//Download Rate Boost Unused - Maxxi 21/07/2018
 	int					rateChecks;
-	int					rateWarnTime;
+	int					rateWarnTime;*/
 	qboolean			kickVoteCalled;
 	int					pbssid;
 	int					pickupItem;
@@ -768,6 +768,8 @@ typedef struct
 	int				wpnum;
 
 	int				nextJoinTime;
+
+	unsigned char	numClientsBegun; //Download Rate Boost Feature - Maxxi 21/07/2018
 
 } level_locals_t;
 
@@ -1452,7 +1454,7 @@ extern	vmCvar_t	g_bestStatsTime;
 extern	vmCvar_t	g_timeRemaining;
 extern	vmCvar_t	sv_logo;
 extern	vmCvar_t	sv_modVersion;
-extern	vmCvar_t	sv_minRate;
+// extern	vmCvar_t	sv_minRate;		////Download Rate Boost Unused - Maxxi 21/07/2018
 extern	vmCvar_t	g_suspendedAdmin;
 extern	vmCvar_t	g_inactivitySpectator;
 extern	vmCvar_t	g_explosionGore;
@@ -1528,6 +1530,8 @@ extern	vmCvar_t	g_scannerInterval;
 extern	vmCvar_t	g_scannerRepeat;
 extern	vmCvar_t	g_scannerDefaultAction;
 extern	vmCvar_t	g_scannerlog;
+
+#include "zg_local.h"
 
 void	trap_Printf( const char *fmt );
 void	trap_Error( const char *fmt );

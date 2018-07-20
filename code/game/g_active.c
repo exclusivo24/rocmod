@@ -722,30 +722,40 @@ qboolean ClientCampTimer( gclient_t *client )
 					G_BroadcastSound("sound/ambience/generic/thunder_loud.mp3");
 					return qtrue;
 				case 1:
-					trap_DropClient( client - level.clients, "Dropped due to camping" );
-					return qfalse;
-				case 2:
-					if ( !g_entities[client - level.clients].client->sess.modData->dummy ) {
-						g_entities[client - level.clients].client->sess.modData->dummy = qtrue;
+					if ( !client->pers.localClient )		// Dont drop a local server, mmmmkaay??? - Maxxi 20/07/2018
+					{
+						trap_DropClient( client - level.clients, "Dropped due to camping" );
+						return qfalse;
+					}
+						
+				case 2:												// There is already a perfectly good client pointer. - Maxxi 20/07/2018
+					if ( !client->sess.modData->dummy ) {			// g_entities[client - level.clients].
+						client->sess.modData->dummy = qtrue;		// g_entities[client - level.clients].
 						ClientUserinfoChanged( client - level.clients );
 						trap_SendServerCommand( -1, va("print \"%s%s^7 has been labeled a ^3TARGET DUMMY^7 for camping.\n\"", level.teamData.teamcolor[client->sess.team], client->pers.netname));
 						G_BroadcastSound("sound/npc/air1/guard02/laughs.mp3");
 					}
 					return qtrue;
 				case 3:
-					if ( !g_entities[client - level.clients].client->ps.stats[STAT_PLANTED] ) {
-						g_entities[client - level.clients].client->ps.stats[STAT_PLANTED] = 1;
+					if ( !client->ps.stats[STAT_PLANTED] ) {		// g_entities[client - level.clients].
+						client->ps.stats[STAT_PLANTED] = 1;			// g_entities[client - level.clients].
 						trap_SendServerCommand( -1, va("print \"%s%s^7 has been glued to his camping spot.\n\"", level.teamData.teamcolor[client->sess.team], client->pers.netname));
 						G_BroadcastSound("sound/npc/air1/guard02/laughs.mp3");
 					}
 					return qtrue;
 				case 4:
-					if ( g_entities[client - level.clients].client->ps.weapon ) {
-						g_entities[client - level.clients].client->ps.weapon = 0;
-						g_entities[client - level.clients].client->ps.weaponstate = WEAPON_READY;
-						g_entities[client - level.clients].client->ps.stats[STAT_WEAPONS] = 0;
-						g_entities[client - level.clients].client->noOutfittingChange = qtrue;
+					if ( client->ps.weapon ) {						// g_entities[client - level.clients].
+						client->ps.weapon = 0;						// g_entities[client - level.clients].
+						client->ps.weaponstate = WEAPON_READY;		// g_entities[client - level.clients].
+
+						client->ps.stats[STAT_WEAPONS] = 0;			// g_entities[client - level.clients].
+						client->noOutfittingChange = qtrue;			// g_entities[client - level.clients].
 						trap_SendServerCommand( -1, va("print \"%s%s^7 gives up camping and surrenders.\n\"", level.teamData.teamcolor[client->sess.team], client->pers.netname));
+
+						// Maxxi - 20/07/2018
+						client->ps.zoomFov = 0;
+						client->ps.pm_flags &= ~PMF_ZOOM_FLAGS;
+
 						G_BroadcastSound("sound/npc/civ/english/male/unarmed.mp3");
 					}
 					return qtrue;
@@ -973,8 +983,9 @@ void ClientOneSecActions( gentity_t *ent )
 		}
 	}
 
+	//Unused Download Rate Boost Feature - Maxxi 21/07/2018
 	// Check their rate and warn or kick them if necessary
-	if ( !ent->client->sess.modData->rateVerified && level.time - ent->client->sess.modData->rateWarnTime > 15000 )
+	/*if ( !ent->client->sess.modData->rateVerified && level.time - ent->client->sess.modData->rateWarnTime > 15000 )
 	{
 		if ( ent->client->sess.modData->rateChecks < 5 )
 		{
@@ -987,7 +998,7 @@ void ClientOneSecActions( gentity_t *ent )
 		{
 			trap_SendConsoleCommand( EXEC_APPEND, va("clientkick %d Raise your connection rate above %i\n", ent->s.number, sv_minRate.integer ) );
 		}
-	}
+	}*/
 }
 
 /*

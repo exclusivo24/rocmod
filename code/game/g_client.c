@@ -12,6 +12,27 @@ void Q_strncpyz( char *dest, const char *src, int destsize );
 static vec3_t	playerMins = {-15, -15, -46};
 static vec3_t	playerMaxs = {15, 15, 48};
 
+/*
+================
+ThrottelDownloadRate
+If the sysop didn't set a bandwidth for Download Rate Boost
+throtteling then estimate one.
+Download Rate Boost Feature 
+Maxxi 21/07/2018
+================
+*/
+void ThrottelDownloadRate( int rateDelta )
+{
+	static int reserved;
+
+	reserved += rateDelta;
+	rateDelta = level.numConnectedClients - level.numClientsBegun;
+	if ( !rateDelta )
+		return;
+
+	trap_Cvar_Set( "sv_maxRate", va("%i", (trap_Cvar_VariableIntegerValue( "g_bandwidth" ) - reserved) / rateDelta) );
+}
+
 
 /*
 ================
@@ -1165,6 +1186,35 @@ void ClientUserinfoChanged( int clientNum )
 		strcpy (userinfo, "\\name\\badinfo");
 	}
 
+	// Set the rate within limits if they are not on Download Rate Boost. - Maxxi 21/07/2018
+   team = atoi( Info_ValueForKey( userinfo, "rate" ) );
+   if ( client->sess.modData->rate != team || !team )
+   {
+      if ( !(ent->r.svFlags & SVF_BOT) )
+      {
+         if ( client->pers.connected == CON_CONNECTED )
+         {
+            namecount = Com_Clamp( g_minRate.integer, g_maxRate.integer, ent->inuse ? team : client->ps.speed );
+         }
+         else
+         {
+            namecount =  262144;
+            if ( !client->ps.speed )      // Overloaded to remember the clients desired rate when downloading has finished
+               client->ps.speed = team;
+         }
+         if ( team != namecount )
+         {
+            Info_SetValueForKey( userinfo, "rate", va("%i", namecount) );
+            trap_EA_Command( clientNum, va("userinfo \"%s\"", userinfo) );
+            return;                     // The engine will call this function again when userinfo is updated
+         }
+         ThrottelDownloadRate( (client->pers.connected != CON_CONNECTING) * (team - client->sess.modData->rate) );
+      }
+      client->sess.modData->rate = team;
+   }
+   namecount = 2;
+   //-------------------------------------------------------------------------------------------------------------------------------------
+
 	// check for local client
 	s = Info_ValueForKey( userinfo, "ip" );
 	if ( !strcmp( s, "localhost" ) ) 
@@ -1327,6 +1377,35 @@ void ClientUserinfoChanged( int clientNum )
 		}
 	}
 
+	// // Set the rate within limits if they are not on Download Rate Boost. - Maxxi 22/02/2012
+   team = atoi( Info_ValueForKey( userinfo, "rate" ) );
+   if ( client->sess.modData->rate != team || !team )
+   {
+      if ( !(ent->r.svFlags & SVF_BOT) )
+      {
+         if ( client->pers.connected == CON_CONNECTED )
+         {
+            namecount = Com_Clamp( g_minRate.integer, g_maxRate.integer, ent->inuse ? team : client->ps.speed );
+         }
+         else
+         {
+            namecount =  262144;
+            if ( !client->ps.speed )      // Overloaded to remember the clients desired rate when downloading has finished
+               client->ps.speed = team;
+         }
+         if ( team != namecount )
+         {
+            Info_SetValueForKey( userinfo, "rate", va("%i", namecount) );
+            trap_EA_Command( clientNum, va("userinfo \"%s\"", userinfo) );
+            return;                     // The engine will call this function again when userinfo is updated
+         }
+         ThrottelDownloadRate( (client->pers.connected != CON_CONNECTING) * (team - client->sess.modData->rate) );
+      }
+      client->sess.modData->rate = team;
+   }
+   namecount = 2;
+   //--------------------------------------------------------------------------------------------------------------------------------------
+
 	// Outfitting if pickups are disabled
 	if ( level.pickupsDisabled )
 	{
@@ -1335,7 +1414,7 @@ void ClientUserinfoChanged( int clientNum )
 		G_UpdateOutfitting ( clientNum );
 	}
 
-	s = Info_ValueForKey( userinfo, "rate" );
+	/*s = Info_ValueForKey( userinfo, "rate" ); //Part Unused Download ThrtottleRate Maxxi 21/07/2018
 	rate = atoi( s );
 	client->sess.modData->rate = rate;
 	if ( rate < sv_minRate.integer )
@@ -1347,7 +1426,7 @@ void ClientUserinfoChanged( int clientNum )
 	{
 		client->sess.modData->rateVerified = qtrue;
 		client->sess.modData->rateChecks = 0;
-	}
+	}*/
 
 	// send over a subset of the userinfo keys so other clients can
 	// print scoreboards, display models, and play custom sounds
@@ -1576,6 +1655,10 @@ char *ClientConnect( int clientNum, qboolean firstTime, qboolean isBot )
 
 	// get and distribute relevent paramters
 	G_LogPrintf( "ClientConnect: %i - %s [%s]\n", clientNum, ip, guid );
+	CalculateRanks();//Download Rate Boost Feature - Maxxi 21/07/2018
+	level.numClientsBegun -= ent->inuse;
+	ent->inuse = qfalse;
+	//------------------------------------------------
 	ClientUserinfoChanged( clientNum );
 
 	// don't do the "xxx connected" messages if they were caried over from previous level
@@ -1595,7 +1678,7 @@ char *ClientConnect( int clientNum, qboolean firstTime, qboolean isBot )
 	}
 
 	// count current clients and rank for scoreboard
-	CalculateRanks();
+	//CalculateRanks(); // Moved Up Download Rate Boost -  Maxxi 21/07/2018
 
 	// Make sure they are unlinked
 	ent->s.number = clientNum;
@@ -1639,12 +1722,29 @@ void ClientBegin( int clientNum )
 		CheckGametype ( );
 	}
 
-	G_InitGentity( ent );
+	/*G_InitGentity( ent );	// Unused Download Rate Boost Feature - Maxxi 21/07/2018
 	ent->touch = 0;
 	ent->pain = 0;
 	ent->client = client;
+	client->pers.connected = CON_CONNECTED; */
+	//Download Rate Boost Feature - Maxxi 21/07/2018
+	if ( !ent->inuse )
+    {
+        ent->classname = "player";        // Moved from ClientSpawn
+        ent->r.ownerNum = ENTITYNUM_NONE;
 
-	client->pers.connected = CON_CONNECTED;
+        client->pers.connected = CON_CONNECTED;
+        level.numClientsBegun++;
+        if ( !(ent->r.svFlags & SVF_BOT) )
+        {
+            // To have the rate set back.
+            client->sess.modData->rate = 0;
+            ClientUserinfoChanged( clientNum );
+        }
+        ent->inuse = qtrue;                            // Moved from ClientSpawn
+    }
+
+
 	client->pers.enterTime = level.time;
 	client->pers.teamState.state = TEAM_BEGIN;
 
@@ -2235,6 +2335,14 @@ void ClientDisconnect( int clientNum )
 
 	trap_UnlinkEntity (ent);
 	ent->s.modelindex = 0;
+	//Download Rate Boost Feature - Maxxi 21/07/2018
+	level.numClientsBegun -= ent->inuse;
+	if ( !(ent->r.svFlags & SVF_BOT) )
+	{
+		level.numConnectedClients--;
+		ThrottelDownloadRate( -ent->client->sess.modData->rate * ent->inuse);
+	}
+	//=============================================================================
 	ent->inuse = qfalse;
 	ent->classname = "disconnected";
 	ent->client->pers.connected = CON_DISCONNECTED;
