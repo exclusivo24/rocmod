@@ -2073,15 +2073,17 @@ int G_ParseTextModifier ( gentity_t *ent, const char *src )
 			return SAY_REF_ALL;
 		}
 	}
-	if ( Q_stricmpn( src, "!cc ", 4) == 0 && g_allowChat.string[3] == '1' )
+	if ( ent->client->sess.modData->clan ) //Maxxi Clan Talk Fix 23/07/2018
 	{
-		return SAY_CLAN_ONLY;
+		if ( Q_stricmpn( src, "!cc ", 4) == 0 && g_allowChat.string[3] == '1' )
+		{
+			return SAY_CLAN_ONLY;
+		}
+		if ( Q_stricmpn( src, "!ct ", 4) == 0 && g_allowTalk.string[3] == '1' )
+		{
+			return SAY_CLAN_ALL;
+		}
 	}
-	if ( Q_stricmpn( src, "!ct ", 4) == 0 && g_allowTalk.string[3] == '1' )
-	{
-		return SAY_CLAN_ALL;
-	}
-
 	return 0;
 }
 
