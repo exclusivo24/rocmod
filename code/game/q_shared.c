@@ -930,32 +930,36 @@ char *Q_CleanStr( char *string ) {
 
 int QDECL Com_sprintf( char *dest, int size, const char *fmt, ...) 
 {
-	int		len;
-	va_list	argptr;
-	char	bigbuffer[32000];	// big, but small enough to fit in PPC stack
+   int      len;
+   va_list   argptr;
+   char   bigbuffer[32000];   // big, but small enough to fit in PPC stack
 
-	va_start (argptr,fmt);
-	len = vnsprintf (bigbuffer,sizeof(bigbuffer),fmt,argptr) + 1;
-	va_end (argptr);
-	if ( len >= sizeof( bigbuffer ) ) {
-//		Com_Error( ERR_FATAL, "Com_sprintf: overflowed bigbuffer" );
-		Com_Printf( "Com_sprintf: overflowed bigbuffer" );
-		len = sizeof( bigbuffer) - 1;		// ROCmod
-	}
-	if (len >= size) {
-		Com_Printf ("Com_sprintf: overflow of %i in %i for '%s'\n", len, size, fmt);
-#ifdef	_DEBUG
-		__asm {
-			int 3;
-		}
+   va_start (argptr,fmt);
+   len = vnsprintf (bigbuffer,sizeof(bigbuffer),fmt,argptr) + 1;
+   va_end (argptr);
+   
+   // Rubbish code (memory leak and error in >=). However, vnsprintf will not overrun the buffer any more. - Maxxi 23/07/2018
+   /*
+   if ( len >= sizeof( bigbuffer ) ) {
+//      Com_Error( ERR_FATAL, "Com_sprintf: overflowed bigbuffer" );
+      Com_Printf( "Com_sprintf: overflowed bigbuffer" );
+      len = sizeof( bigbuffer) - 1;      // ROCmod
+   }
+   */
+
+   if (len > size) {      // > was >= - Maxxi 23/07/2018
+      Com_Printf ("Com_sprintf: overflow of %i in %i for '%s'\n", len, size, fmt);
+#ifdef   _DEBUG
+      __asm {
+         int 3;
+      }
 #endif
-		len = size - 1;		// ROCmod - fixed SOF2 bug
-	}
-	Q_strncpyz (dest, bigbuffer, len );
+      len = size;      // ROCmod - fixed SOF2 bug      // - 1 - Maxxi 23/07/2018
+   }
+   Q_strncpyz (dest, bigbuffer, len );
 
-	return len-1;
+   return len-1;
 }
-
 
 /*
 ============

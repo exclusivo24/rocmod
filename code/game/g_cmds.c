@@ -2774,21 +2774,52 @@ void G_ParseVoiceCommands ( gentity_t *ent, const char *chatText, char *text, in
 		pos = src;
 		num = 0;
 		c = *src;
-		while ( c >= '0' && c <= '9' && len )
+		//Bugged - Maxxi 23/07/2018
+		/*while ( c >= '0' && c <= '9' && len )
 		{
 			c -= '0';
 			num = num * 10 + c;
 			src++;
 			len--;
 			c = *src;
+		}*/
+
+		//Fixed Version - Maxxi 23/07/2018
+		while ( c >= '0' && c <= '9' && len )
+		{
+			c -= '0';
+			num = num * 10 + c;
+			
+			if (!(num > 0 && num < 1025))
+			{
+              Com_Printf("ERRORInvalid VoiceCmd Sound Parsed."); //Log It To The Server
+              G_LogPrintf( " VoiceCmd ERROR: %s: %s\n", ent->client->pers.netname, chatText ); //Put it In The Server Log File
+              return; 
+            }
+			
+			src++;
+			len--;
+			c = *src;
 		}
 
+		/* Bugged - Maxxi 23/07/2018
 		if (num <= 0 || num > voicecmds.voiceCommandCount || !voicecmds.voiceCommandSound[num][0] )
 		{
 			*text++ = dotext?'@':'&';
 			src = pos;
 			continue;
-		}
+		}*/
+
+		//Fixed Version - Maxxi 23/07/2018
+		if (!(num > 0 && num < 1025) && !voicecmds.voiceCommandSound[num][0])
+		{
+          // Voice Commands Overflow Fixed - Maxxi 23/07/2018
+            *text++ = dotext?'@':'&';
+            src = pos;
+            len--;  
+			continue;   
+          //========================================  
+        }
 
 		if ( ent != NULL && ent->client->sess.modData->adminref < 2 && ent->client->sess.modData->adminref != -1 && voicecmds.voiceCommandFlag[num] == VOICE_ADMIN_ONLY )
 		{

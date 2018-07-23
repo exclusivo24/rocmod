@@ -33,17 +33,37 @@ void AdminCmd_Talk( gentity_t *ent, int type )
 
 	text = ConcatArgs( 2 );
 
-	if ( type == 1 )
+	if ( type == 0 )
 	{
-		G_Say( ent, NULL, SAY_ADMIN_ALL, text, qfalse );
+		G_Say( ent, NULL, SAY_CLAN_ONLY, text, qfalse );
+	}
+	else if ( type == 1 )
+	{
+		G_Say( ent, NULL, SAY_REF_ONLY, text, qfalse );
 	}
 	else if ( type == 2 )
 	{
-		G_Say( ent, NULL, SAY_REF_ALL, text, qfalse );
+		G_Say( ent, NULL, SAY_ADMIN_ONLY, text, qfalse );
 	}
 	else if ( type == 3 )
 	{
-		G_Say( ent, NULL, SAY_CLAN_ALL, text, qfalse );
+		G_Say( ent, NULL, SAY_SYSOP_ONLY, text, qfalse );
+	}
+	else if ( type == 4 )
+	{
+		G_Say( ent, NULL, SAY_SCRIM_ONLY, text, qfalse );
+	}
+	else if ( type == 5 )
+	{
+		G_Say( ent, NULL, SAY_COFOUNDER_ONLY, text, qfalse );
+	}
+	else if ( type == 6 )
+	{
+		G_Say( ent, NULL, SAY_FOUNDER_ONLY, text, qfalse );
+	}
+	else if ( type == 7 )
+	{
+		G_Say( ent, NULL, SAY_OWNER_ONLY, text, qfalse );
 	}
 }
 
@@ -68,17 +88,37 @@ void AdminCmd_Chat( gentity_t *ent, int type )
 
 	text = ConcatArgs( 2 );
 
-	if ( type == 1 )
+	if ( type == 0 )
 	{
-		G_Say( ent, NULL, SAY_ADMIN_ONLY, text, qfalse );
+		G_Say( ent, NULL, SAY_CLAN_ONLY, text, qfalse );
 	}
-	else if ( type == 2 )
+	else if ( type == 1 )
 	{
 		G_Say( ent, NULL, SAY_REF_ONLY, text, qfalse );
 	}
+	else if ( type == 2 )
+	{
+		G_Say( ent, NULL, SAY_ADMIN_ONLY, text, qfalse );
+	}
 	else if ( type == 3 )
 	{
-		G_Say( ent, NULL, SAY_CLAN_ONLY, text, qfalse );
+		G_Say( ent, NULL, SAY_SYSOP_ONLY, text, qfalse );
+	}
+	else if ( type == 4 )
+	{
+		G_Say( ent, NULL, SAY_SCRIM_ONLY, text, qfalse );
+	}
+	else if ( type == 5 )
+	{
+		G_Say( ent, NULL, SAY_COFOUNDER_ONLY, text, qfalse );
+	}
+	else if ( type == 6 )
+	{
+		G_Say( ent, NULL, SAY_FOUNDER_ONLY, text, qfalse );
+	}
+	else if ( type == 7 )
+	{
+		G_Say( ent, NULL, SAY_OWNER_ONLY, text, qfalse );
 	}
 }
 
@@ -1338,17 +1378,27 @@ void AdminCmd_DoSwapTeams( gentity_t *ent )
 	for (i = 0; i < level.numConnectedClients; i++) 
 	{
 		player = &g_entities[level.sortedClients[i]];
+		// Don't check for stuff that never happens. - Maxxi 23/07/2018
+		/*
 		if ( player->client->pers.connected != CON_CONNECTED && player->client->pers.connected != CON_CONNECTING )
 		{
 			continue;
 		}
-		if ( player->client->sess.team == TEAM_FREE || player->client->sess.team == TEAM_SPECTATOR ) 
+		*/
+		//IF a guy is somehow on TEAM_FREE in a teamgame, then we definitely want him to switch 
+		//if ( player->client->sess.team == TEAM_FREE || player->client->sess.team == TEAM_SPECTATOR )
+		if ( player->client->sess.team == TEAM_SPECTATOR )
 		{
 			continue;
 		}
+		// This will make the teams uneven. - Maxxi 23/07/2018
+		/*
 		if ( ent && ent->client->sess.modData->adminref < 3 && player->client->sess.modData->adminref == 3 && g_sysopImmuneToAdmin.integer ) {
 			continue;
 		}
+		*/
+		// SetTeamInstant does this much better. - Maxxi 23/07/2018
+		/*
 		player->client->ps.stats[STAT_WEAPONS] = 0;
 		TossClientItems( player );
 		G_StartGhosting( player );
@@ -1369,17 +1419,21 @@ void AdminCmd_DoSwapTeams( gentity_t *ent )
 		player->client->pers.identity = NULL;
 		ClientUserinfoChanged( level.sortedClients[i] );
 
-		CalculateRanks();
+		//CalculateRanks();	// really stupid. - Maxxi 23/07/2018
 
 		G_StopFollowing( player );
 		G_StopGhosting( player );
 		trap_UnlinkEntity ( player );
 		ClientSpawn( player );
+		*/
+		SetTeamInstant( player, (player->client->sess.team % 2) +1, qfalse, qfalse );
 	}
 
 	teamscore = level.teamScores[TEAM_RED];
 	level.teamScores[TEAM_RED] = level.teamScores[TEAM_BLUE];
 	level.teamScores[TEAM_BLUE] = teamscore;
+
+	CalculateRanks();	// Do this once, and for all... and update the teamscores. - Maxxi 23/07/2018
 }
 
 void AdminCmd_SwapTeams( gentity_t *ent, int type )
@@ -1411,26 +1465,43 @@ void AdminCmd_DoShuffleTeams( gentity_t *ent )
 {
 	int			i;
 	int			rnd;
-	int			red;
-	int			blue;
-	int			team;
-	int			count;
+	/*	Disabled - Maxxi 23/07/2018
+	int			red;  
+	int			blue; 
+	int			team; 
+	*/
+	char		teams[2];	//Added - Maxxi 23/07/2018
+	char		count = 0;
 	gentity_t	*player;
 
-	red = 0;
-	blue = 0;
-	for (i = 0; i < level.numConnectedClients; i++) 
+	/* Not Needed - Maxxi 23/07/2018
+	red = 0;  
+	blue = 0; 
+	*/
+	//Added Maxxi 23/07/2018
+	teams[TEAM_RED-1] = 0; 
+	teams[TEAM_BLUE-1] = 0;
+
+	for (i = 0; i < level.numConnectedClients; i++)
 	{
 		player = &g_entities[level.sortedClients[i]];
 
+		// Don't check for stuff that never happens. Disabled - Maxxi 23/07/2018
+		/*
 		if ( player->client->pers.connected != CON_CONNECTED && player->client->pers.connected != CON_CONNECTING )
 		{
 			continue;
 		}
-		if ( player->client->sess.team == TEAM_FREE || player->client->sess.team == TEAM_SPECTATOR ) 
+		*/
+		// IF a guy is somehow on TEAM_FREE in a teamgame, then we definitely want him to switch :D - Disabled Maxxi 23/07/2018
+		//if ( player->client->sess.team == TEAM_FREE || player->client->sess.team == TEAM_SPECTATOR )
+		if ( player->client->sess.team == TEAM_SPECTATOR ) //New - Maxxi 23/07/2018 
 		{
 			continue;
 		}
+
+		if ( player->client->ps.stats[STAT_GAMETYPE_ITEMS] ) continue; //New - Maxxi 23/07/2018 
+
 		if ( ent && ent->client->sess.modData->adminref < 3 && player->client->sess.modData->adminref == 3 && g_sysopImmuneToAdmin.integer ) {
 //			if ( player->client->sess.team == TEAM_RED ) {
 //				red++;
@@ -1438,11 +1509,17 @@ void AdminCmd_DoShuffleTeams( gentity_t *ent )
 //			else {
 //				blue++;
 //			}
+			teams[player->client->sess.team-1]++;
+			count++;
 			continue;
 		}
+
+		// SetTeamInstant does this much better. - Not Needed Anymore - Maxxi 23/07/2018 
+		/*
 		player->client->ps.stats[STAT_WEAPONS] = 0;
 		TossClientItems( player );
 		G_StartGhosting( player );
+		*/
 //		if ( blue > red && (blue - red) > 2 ) {
 //			player->client->sess.team = TEAM_RED;
 //			red++;
@@ -1453,17 +1530,37 @@ void AdminCmd_DoShuffleTeams( gentity_t *ent )
 //		}
 //		else
 //		{
-			rnd = rand() % 10;
-			if ( rnd < 5 ) {
+			// Make sure the teams are even when we finish shuffeling. - Maxxi 23/07/2018
+			rnd = teams[TEAM_RED-1] - teams[TEAM_BLUE-1];
+			if ( abs(rnd) >= level.numPlayingClients - count )
+			{
+				rnd = rnd<0?TEAM_RED:TEAM_BLUE;
+			}
+			else
+			{
+				//rnd = rand() % 2;
+				rnd = (rand() % 2) +1;		// The easy version. - Maxxi 23/07/2018
+			}
+			/*
+			if ( rnd )
+			{
 				player->client->sess.team = TEAM_BLUE;
 //				blue++;
 			}
-			else {
+			else
+			{
 				player->client->sess.team = TEAM_RED;
 //				red++;
 			}
+			*/
+			count++;
+			teams[rnd-1]++;
+			SetTeamInstant( player, rnd, qfalse, qfalse );
+
 //		}
-/**/
+
+		// SetTeamInstant does this much better. - Maxxi 23/07/2018
+		/*
 		G_SendExtraTeamInfo( player );
 
 		if ( player->client->sess.modData->penalty )
@@ -1473,8 +1570,9 @@ void AdminCmd_DoShuffleTeams( gentity_t *ent )
 
 		player->client->pers.identity = NULL;
 		ClientUserinfoChanged( level.sortedClients[i] );
+		*/
 
-		CalculateRanks();
+		//CalculateRanks();	// AdminCmd_DoEvenTeams does this, once, and for all. disabled - Maxxi 23/07/2018
 /*
 		G_StopFollowing( player );
 		G_StopGhosting( player );
@@ -1483,6 +1581,8 @@ void AdminCmd_DoShuffleTeams( gentity_t *ent )
 */
 	}
 
+	// This is now taken care of.  Disabled - Maxxi 23/07/2018
+	/*
 	red = TeamCount( -1, TEAM_RED, NULL );
 	blue = TeamCount( -1, TEAM_BLUE, NULL );
 	if ( red - blue > 1 )
@@ -1501,6 +1601,8 @@ void AdminCmd_DoShuffleTeams( gentity_t *ent )
 	}
 
 	AdminCmd_DoEvenTeams( ent, team, count );
+	*/
+	CalculateRanks();	// SetTeamInstant call changed. - Maxxi 23/07/2018
 }
 
 void AdminCmd_ShuffleTeams( gentity_t *ent, int type )
@@ -1764,14 +1866,20 @@ void AdminCmd_Launch( gentity_t *ent, int type )
 
 		G_AdminLogPrintf( "Admin (%i) action by %s: launch %i (%s)\n", type, ent?ent->client->pers.netname:"rcon", id, id_ent->client->pers.netname );
 
+		// This made the client drop the gametype items only, which it would then pick up again right away because it hasn't been moved far away from them. - Maxxi 23/07/2018
+		/*
 		weapons = id_ent->client->ps.stats[STAT_WEAPONS];
 		id_ent->client->ps.stats[STAT_WEAPONS] = 0;
 		TossClientItems( id_ent );
 		id_ent->client->ps.stats[STAT_WEAPONS] = weapons;
+		*/
 
 		dir[0] = dir[1] = 0;
 		dir[2] = 1;
 		G_ApplyKnockback( id_ent, dir, 1000 );
+
+		// Armor makes no difference to fall damage. STAT_HEALTH will update soon enough. - Maxxi 23/07/2018
+		/*
 		id_ent->client->ps.stats[STAT_ARMOR] /= 10;
 		if ( id_ent->client->ps.stats[STAT_ARMOR] < 1 ) {
 			id_ent->client->ps.stats[STAT_ARMOR] = 1;
@@ -1780,6 +1888,8 @@ void AdminCmd_Launch( gentity_t *ent, int type )
 		if ( id_ent->client->ps.stats[STAT_HEALTH] < 1 ) {
 			id_ent->client->ps.stats[STAT_HEALTH] = 1;
 		}
+		*/
+
 		id_ent->health /= 10;
 		if ( id_ent->health < 1 ) {
 			id_ent->health = 1;
@@ -1795,7 +1905,6 @@ void AdminCmd_Launch( gentity_t *ent, int type )
 		level.tagcount = 0;									//
 	}														//
 }
-
 void AdminCmd_Explode( gentity_t *ent, int type )
 {
 	int				usetags;								//
@@ -1922,7 +2031,7 @@ void AdminCmd_Telefrag( gentity_t *ent, int type )
 	char		buffer[MAX_TOKEN_CHARS];
 	int			id;
 	gentity_t	*id_ent;
-	int			weapons;
+	//int			weapons; Unused Maxxi 23/07/2018
 
 	if ( !ent )
 	{
@@ -1965,9 +2074,13 @@ void AdminCmd_Telefrag( gentity_t *ent, int type )
 
 		G_AdminLogPrintf( "Admin (%i) action by %s: telefrag %i (%s)\n", type, ent->client->pers.netname, id, id_ent->client->pers.netname );
 
+		// Why drop the admin's items?? G_KillBoxAdm -> player_die will drop the items of the target. - Maxxi 23/07/2018
+		/*
 		weapons = ent->client->ps.stats[STAT_WEAPONS];
 		ent->client->ps.stats[STAT_WEAPONS] = 0;
 		TossClientItems( ent );
+		*/
+
 		trap_UnlinkEntity (ent);
 		VectorCopy ( id_ent->client->ps.origin, ent->client->ps.origin );
 		ent->client->ps.pm_time = 160;		// hold time
@@ -1983,7 +2096,7 @@ void AdminCmd_Telefrag( gentity_t *ent, int type )
 		if ( !G_IsClientSpectating ( ent->client ) ) 
 		{
 			trap_LinkEntity (ent);
-			ent->client->ps.stats[STAT_WEAPONS] = weapons;
+			//ent->client->ps.stats[STAT_WEAPONS] = weapons; //No Effect - Maxxi 23/07/2018
 		}
 
 		trap_SendServerCommand( -1, va("print \"%s%s^7 was telefragged by %s%s^7!\n\"", level.teamData.teamcolor[g_entities[id].client->sess.team], g_entities[id].client->pers.netname, (!ent||(type==1&&g_anonymousAdmin.integer))?"":level.teamData.teamcolor[ent->client->sess.team], (!ent||(type==1&&g_anonymousAdmin.integer))?"an admin":ent->client->pers.netname));
@@ -2067,7 +2180,7 @@ void AdminCmd_Respawn( gentity_t *ent, int type )
 	int			id;
 	gentity_t	*id_ent;
 	gspawn_t	*spawnPoint;
-	int			weapons;
+	int			weapons; 
 
 	if ( trap_Argc () < 3 ) {
 		G_PrintMessage( ent, "usage: respawn #id\n");
@@ -2126,7 +2239,7 @@ void AdminCmd_Respawn( gentity_t *ent, int type )
 			if ( !G_IsClientSpectating ( id_ent->client ) ) 
 			{
 				trap_LinkEntity (id_ent);
-				id_ent->client->ps.stats[STAT_WEAPONS] = weapons;
+				//id_ent->client->ps.stats[STAT_WEAPONS] = weapons; Unused - Maxxi 23/07/2018
 			}
 		}
 
@@ -2146,6 +2259,8 @@ void AdminCmd_DoBait( gentity_t *ent )
 	gspawn_t	*spawnPoint;
 	int			weapons;
 
+	// Maxxi 23/07/2018
+	/*
 	if ( ent->client->sess.team == TEAM_RED )
 	{
 		spawnPoint = G_SelectClientSpawnPoint ( TEAM_BLUE );
@@ -2154,6 +2269,9 @@ void AdminCmd_DoBait( gentity_t *ent )
 	{
 		spawnPoint = G_SelectClientSpawnPoint ( TEAM_RED );
 	}
+	*/
+	spawnPoint = G_SelectClientSpawnPoint( ent->client->sess.team % (TEAM_SPECTATOR-1) + 1 );
+
 	if ( spawnPoint )
 	{
 		weapons = ent->client->ps.stats[STAT_WEAPONS];
@@ -2174,12 +2292,13 @@ void AdminCmd_DoBait( gentity_t *ent )
 		if ( !G_IsClientSpectating ( ent->client ) ) 
 		{
 			trap_LinkEntity( ent );
-			ent->client->ps.stats[STAT_WEAPONS] = weapons;
+			//ent->client->ps.stats[STAT_WEAPONS] = weapons;		// No effect. - Maxxi 23/07/2018
 		}
 
 		ent->client->ps.weapon = 0;
-		ent->client->ps.weaponstate = WEAPON_READY;
-		ent->client->ps.stats[STAT_WEAPONS] = 0;
+		// Maxxi 23/07/2018
+		//ent->client->ps.weaponstate = WEAPON_READY;
+		//ent->client->ps.stats[STAT_WEAPONS] = 0;
 
 		ent->client->ps.stats[STAT_PLANTED] = 1;
 		ent->client->noOutfittingChange = qtrue;
@@ -2252,36 +2371,74 @@ void AdminCmd_Bait( gentity_t *ent, int type )
 
 void AdminCmd_DoEvenTeams( gentity_t *ent, int team, int count )
 {
-	int			i;
-	int			score;
-	int			id;
-	int			teamred;
-	int			teamblue;
+	int		i;
+	/* Disabled - Maxxi 23/07/2018
+	//int		score;
+	//int		id;
+	//int		teamred;
+	//int		teamblue; 
+	*/
 	gentity_t	*player;
+	int			numbots;
 
+#ifdef _SOF2_BOTS
+	unsigned char		lookForBot = numbots;		//Added - Maxxi 23/07/2018
+#endif
+
+	// level.sortedClients[] have already done this for us. - Maxxi 23/07/2018
+	/*
 	while ( count-- )
 	{
 		score = 999999;
 		id = 0;
-		for (i = 0; i < level.numConnectedClients; i++) 
+	*/
+		// Loop from poorest ranking player untill count == 0. - Maxxi 23/07/2018
+		//for (i = 0; i < level.numConnectedClients; i++)
+		for (i = level.numConnectedClients-1; i >= 0 && count; i--)
 		{
 			player = &g_entities[level.sortedClients[i]];
+			
+#ifdef _SOF2_BOTS
+			// First see if there are any bots we could move. - Maxxi 23/07/2018
+			if ( lookForBot )
+			{
+				if ( player->r.svFlags & SVF_BOT )
+				{
+					lookForBot--;
+					if ( !lookForBot ) i = level.numConnectedClients;
+				}
+				else
+				{
+					continue;					
+				}
+			}
+#endif
+
+			// Don't check for stuff that never happens. - Maxxi 23/07/2018
+			/*
 			if ( player->client->pers.connected != CON_CONNECTED && player->client->pers.connected != CON_CONNECTING )
 			{
 				continue;
 			}
-			if ( player->client->sess.team == TEAM_FREE || player->client->sess.team == TEAM_SPECTATOR || player->client->sess.team != team )
+			*/
+			// IF a guy is somehow on TEAM_FREE in a teamgame, then we definitely want him to switch :D - Maxxi 23/07/2018
+			//if ( player->client->sess.team == TEAM_FREE || player->client->sess.team == TEAM_SPECTATOR || player->client->sess.team != team )
+			if ( player->client->sess.team != team )
 			{
 				continue;
 			}
-			if ( ent && ent->client->sess.modData->adminref < 3 && player->client->sess.modData->adminref == 3 && g_sysopImmuneToAdmin.integer ) {
+			// These fields are moved to each item. - Maxxi 23/07/2018
+			//if ( player->s.number == level.redGTI_Taker || player->s.number == level.blueGTI_Taker )
+			if ( player->client->ps.stats[STAT_GAMETYPE_ITEMS] )
+			{
 				continue;
 			}
-			if ( player->s.number == level.redFlagCarrier || player->s.number == level.blueFlagCarrier )
+			if ( ent && ent->client->sess.modData->adminref < 3 && player->client->sess.modData->adminref == 3 && g_sysopImmuneToAdmin.integer )
 			{
 				continue;
 			}
 
+			/*
 			if ( player->client->sess.modData->recondata->score < score )
 			{
 				score = player->client->sess.modData->recondata->score;
@@ -2294,6 +2451,7 @@ void AdminCmd_DoEvenTeams( gentity_t *ent, int team, int count )
 		player->client->ps.stats[STAT_WEAPONS] = 0;
 		TossClientItems( player );
 		G_StartGhosting( player );
+	
 		if ( player->client->sess.team == TEAM_RED ) {
 			player->client->sess.team = TEAM_BLUE;
 		}
@@ -2311,13 +2469,18 @@ void AdminCmd_DoEvenTeams( gentity_t *ent, int team, int count )
 		player->client->pers.identity = NULL;
 		ClientUserinfoChanged( id );
 
-		CalculateRanks();
+		//CalculateRanks();	
 
 		G_StopFollowing( player );
 		G_StopGhosting( player );
 		trap_UnlinkEntity ( player );
 		ClientSpawn( player );
+		*/
+		SetTeamInstant( player, (player->client->sess.team % 2) +1, qtrue, qfalse );
+		count--;
 	}
+
+	CalculateRanks();	// Do this once, and for all. - Maxxi 23/07/2018
 }
 
 void AdminCmd_EvenTeams( gentity_t *ent, int type )
@@ -2539,6 +2702,8 @@ void AdminCmd_Swap( gentity_t *ent, int type )
 
 	G_AdminLogPrintf( "Admin (%i) action by %s: swap %i (%s) %i (%s)\n", type, ent?ent->client->pers.netname:"rcon", id1, id_ent1->client->pers.netname, id2, id_ent2->client->pers.netname );
 
+	// logic. Disabled - Maxxi 23/07/2018
+	/*
 	if ( id_ent1->client->sess.team == TEAM_RED ) {
 		SetTeamInstant( id_ent1, TEAM_BLUE, qtrue );
 		SetTeamInstant( id_ent2, TEAM_RED, qtrue );
@@ -2547,6 +2712,12 @@ void AdminCmd_Swap( gentity_t *ent, int type )
 		SetTeamInstant( id_ent1, TEAM_RED, qtrue );
 		SetTeamInstant( id_ent2, TEAM_BLUE, qtrue );
 	}
+	*/
+
+	id1 = id_ent1->client->sess.team;
+	SetTeamInstant( id_ent1, id_ent2->client->sess.team, qtrue, qfalse );
+	SetTeamInstant( id_ent2, id1, qtrue, qfalse );
+	CalculateRanks();	// SetTeamInstant call changed. - Maxxi 23/07/2018
 }
 
 void AdminCmd_DoClanVsAll( gentity_t *ent, char *buffer )
@@ -2582,11 +2753,20 @@ void AdminCmd_DoClanVsAll( gentity_t *ent, char *buffer )
 			continue;
 		}
 
+		/* Disabled Not Needed Cause Having Changed Version Of SetTeamInstant - Maxxi 23/07/2018
 		if ( cl->sess.modData->clan ) {
 			SetTeamInstant( &g_entities[i], team1, qfalse );
 		}
 		else {
 			SetTeamInstant( &g_entities[i], team2, qfalse );
+		}*/
+		//New Lines From SetTeamInstant - Maxxi 23/07/2018
+
+		if ( cl->sess.modData->clan ) {
+			SetTeamInstant( &g_entities[i], team1, qfalse, qfalse ); 
+		}
+		else {
+			SetTeamInstant( &g_entities[i], team2, qfalse, qfalse ); 
 		}
 	}
 }
@@ -2696,13 +2876,18 @@ void AdminCmd_TagVsAll( gentity_t *ent, int type )
 				break;
 			}
 		}
+		// Not Needed Cause We Have A Changed Version Of SetTeamInstant - Maxxi 23/07/2018
+		/*
 		if ( found ) {
-			SetTeamInstant( &g_entities[i], team1, qfalse );
+			SetTeamInstant( &g_entities[i], team1, qfalse, qfalse );
 		}
 		else {
-			SetTeamInstant( &g_entities[i], team2, qfalse );
+			SetTeamInstant( &g_entities[i], team2, qfalse, qfalse );
 		}
+		*/
+		SetTeamInstant( &g_entities[i], found?team1:team2, qfalse, qfalse );//New Line - Maxxi 23/07/2018
 	}
+	CalculateRanks();	// SetTeamInstant call changed. - Maxxi 23/07/2018
 }
 
 void AdminCmd_PbKick( gentity_t *ent, int type )

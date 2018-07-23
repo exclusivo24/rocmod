@@ -1252,7 +1252,8 @@ void ClientUserinfoChanged( int clientNum )
 	// set name
 	Q_strncpyz ( oldname, client->pers.netname, sizeof( oldname ) );
 	s = Info_ValueForKey (userinfo, "name");
-	G_ClientCleanName( s, client->pers.netname, sizeof(client->pers.netname), g_allowColorNames.integer?qtrue:qfalse );
+	//G_ClientCleanName( s, client->pers.netname, sizeof(client->pers.netname), g_allowColorNames.integer?qtrue:qfalse );//Old Unused PlayerName OverRun Fix Feature - Maxxi 23/07/2018
+	G_ClientCleanName( s, client->pers.netname, sizeof(client->pers.netname) ); //PlayerName OverRun Fix Feature - Maxxi 23/007/2018
 
 	if ( client->sess.team == TEAM_SPECTATOR ) 
 	{
@@ -1336,7 +1337,9 @@ void ClientUserinfoChanged( int clientNum )
 	// loaded
 	if ( !client->pers.identity  )
 	{
-		client->pers.identity = &bg_identities[0];
+		//client->pers.identity = &bg_identities[0];//Now Unused Fix For Identity Flooding - Maxxi 23/07/2018
+		// Give the old identity back explicitly in case the client will update the wrong CVar and thus send an other update for each random skin we assign. - Maxxi 2307/2018
+		client->pers.identity = oldidentity ? oldidentity : &bg_identities[ rand()%bg_identityCount ];
 	}
 
 	// Report the identity change
